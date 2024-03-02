@@ -1,16 +1,13 @@
-// import { useGetTeachers } from "../../../api/teacher";
+import { useGetGroups } from "../../../api/group";
 import GroupsTemplate from "../../templates/GroupsTemplate/GroupsTemplate";
 
 function GroupsPage() {
-  // const { data: groupsData, isLoading: isGetGroupsLoading } =
-  //   useGetTeachers();
+  const { data: groupsData, isLoading: isGetGroupsLoading } = useGetGroups();
 
   return (
     <GroupsTemplate
-      // teachersData={groupsData}
-      // isGetTeachersLoading={isGetGroupsLoading}
-      groupsData={[]}
-      isGetGroupsLoading={false}
+      groupsData={groupsData}
+      isGetGroupsLoading={isGetGroupsLoading}
     />
   );
 }

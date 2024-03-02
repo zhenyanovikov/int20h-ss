@@ -13,6 +13,7 @@ import (
 	"oss-backend/internal/service/aws/mail"
 	"oss-backend/internal/service/aws/media"
 	"oss-backend/internal/service/faculty"
+	"oss-backend/internal/service/group"
 	"oss-backend/internal/service/httpserver"
 	"oss-backend/internal/service/user"
 )
@@ -33,11 +34,12 @@ func Up() (*Dependencies, error) {
 		return nil, err
 	}
 	facultyService := faculty.New(postgresPostgres)
+	groupService := group.New(postgresPostgres)
 	mailService, err := mail.New(configConfig)
 	if err != nil {
 		return nil, err
 	}
-	httpServer := httpserver.New(configConfig, service, userService, mediaService, facultyService, mailService)
+	httpServer := httpserver.New(configConfig, service, userService, mediaService, facultyService, groupService, mailService)
 	dependencies := NewDependencies(configConfig, httpServer, service, userService, postgresPostgres, mailService)
 	return dependencies, nil
 }

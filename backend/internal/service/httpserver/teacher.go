@@ -9,7 +9,7 @@ import (
 )
 
 func (s *HTTPServer) getTeachers(w http.ResponseWriter, r *http.Request) {
-	teachers, err := s.userSrv.GetTeachers(r.Context())
+	teachers, err := s.userSrv.ListTeachers(r.Context())
 	if err != nil {
 		s.respondError(w, http.StatusInternalServerError, err)
 		return

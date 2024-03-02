@@ -1,6 +1,7 @@
 import { Box, Stack, CircularProgress } from "@mui/material";
-import AdminTemplate from "../../templates/AdminTemplate/AdminTemplate";
 import Empty from "../../molecules/Empty/Empty";
+import InviteTeacherForm from "../../organisms/InviteTeacherForm/InviteTeacherForm";
+import AdminTemplate from "../../templates/AdminTemplate/AdminTemplate";
 
 function TeachersTemplate({ teachersData, isGetTeachersLoading }) {
   return (
@@ -10,7 +11,11 @@ function TeachersTemplate({ teachersData, isGetTeachersLoading }) {
           <CircularProgress />
         </Stack>
       ) : (
-        <>{!teachersData.length ? <Empty /> : <Box />}</>
+        <Stack spacing={2}>
+          <InviteTeacherForm />
+
+          <>{!teachersData.length ? <Empty /> : <Box />}</>
+        </Stack>
       )}
     </AdminTemplate>
   );

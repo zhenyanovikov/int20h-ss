@@ -13,3 +13,7 @@ func (p *Postgres) User() persistence.User {
 func (p *Postgres) Faculty() persistence.Faculty {
 	return p
 }
+
+func (p *Postgres) Group() persistence.Group {
+	return p
+}

@@ -1,6 +1,7 @@
 import { Box, Stack, CircularProgress } from "@mui/material";
-import AdminTemplate from "../../templates/AdminTemplate/AdminTemplate";
 import Empty from "../../molecules/Empty/Empty";
+import CreateGroupForm from "../../organisms/CreateGroupForm/CreateGroupForm";
+import AdminTemplate from "../../templates/AdminTemplate/AdminTemplate";
 
 function GroupsTemplate({ groupsData, isGetGroupsLoading }) {
   return (
@@ -10,7 +11,11 @@ function GroupsTemplate({ groupsData, isGetGroupsLoading }) {
           <CircularProgress />
         </Stack>
       ) : (
-        <>{!groupsData.length ? <Empty /> : <Box />}</>
+        <Stack spacing={2}>
+          <CreateGroupForm />
+
+          <>{!groupsData.length ? <Empty /> : <Box />}</>
+        </Stack>
       )}
     </AdminTemplate>
   );

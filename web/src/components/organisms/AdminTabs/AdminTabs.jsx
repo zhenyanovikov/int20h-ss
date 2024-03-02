@@ -11,7 +11,7 @@ function AdminTabs() {
   const selectedTab = TABS.find((tab) => tab.to === location.pathname);
 
   return (
-    <Tabs value={selectedTab?.value}>
+    <Tabs value={selectedTab?.value} variant="scrollable">
       {TABS.map((tab) => (
         <Tab
           key={tab.value}
