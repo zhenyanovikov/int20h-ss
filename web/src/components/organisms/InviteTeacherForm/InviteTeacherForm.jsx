@@ -24,7 +24,7 @@ function InviteTeacherForm() {
           id="email"
           name="email"
           size="small"
-          label={t("organisms.inviteTeacherForm.form.amount.email")}
+          label={t("organisms.inviteTeacherForm.form.email.label")}
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}

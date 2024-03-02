@@ -1,7 +1,7 @@
 import { Box, Stack, CircularProgress } from "@mui/material";
-import AdminTemplate from "../../templates/AdminTemplate/AdminTemplate";
-import InviteTeacherForm from "../../organisms/InviteTeacherForm/InviteTeacherForm";
 import Empty from "../../molecules/Empty/Empty";
+import InviteTeacherForm from "../../organisms/InviteTeacherForm/InviteTeacherForm";
+import AdminTemplate from "../../templates/AdminTemplate/AdminTemplate";
 
 function TeachersTemplate({ teachersData, isGetTeachersLoading }) {
   return (
