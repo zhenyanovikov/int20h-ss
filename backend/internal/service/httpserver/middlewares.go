@@ -5,6 +5,9 @@ import (
 	"fmt"
 	"net/http"
 	"strings"
+
+	"github.com/gorilla/mux"
+	"oss-backend/internal/models"
 )
 
 func (s *HTTPServer) authMiddleware(next http.Handler) http.Handler {
@@ -31,4 +34,19 @@ func (s *HTTPServer) authMiddleware(next http.Handler) http.Handler {
 		next.ServeHTTP(w, r)
 		return
 	})
+}
+
+func (s *HTTPServer) roleMiddleware(admin models.Role) mux.MiddlewareFunc {
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			user := r.Context().Value("user").(*models.User)
+
+			if user.Role != admin {
+				s.respondError(w, http.StatusForbidden, fmt.Errorf("forbidden"))
+				return
+			}
+
+			next.ServeHTTP(w, r)
+		})
+	}
 }

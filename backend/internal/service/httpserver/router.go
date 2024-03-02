@@ -7,28 +7,34 @@ import (
 	"github.com/markbates/goth"
 	"github.com/markbates/goth/providers/google"
 	"oss-backend/internal/config"
+	"oss-backend/internal/models"
 )
 
 func (s *HTTPServer) newRouter(_ config.Config) *mux.Router {
-	router := mux.NewRouter()
+	var (
+		router     = mux.NewRouter()
+		api        = router.PathPrefix("/api/v1").Subrouter()
+		authorized = api.PathPrefix("/").Subrouter()
+		admin      = authorized.PathPrefix("/admin").Subrouter()
+	)
 
 	goth.UseProviders(
 		google.New(s.googleOAuthCfg.ClientID, s.googleOAuthCfg.ClientSecret, s.googleOAuthCfg.RedirectURL, s.googleOAuthCfg.Scopes...),
 	)
 
 	router.Use(corsMiddleware)
+	authorized.Use(s.authMiddleware)
 
-	api := router.PathPrefix("/api/v1").Subrouter()
-
-	protected := api.PathPrefix("/").Subrouter()
-	protected.Use(s.authMiddleware)
+	admin.Use(s.roleMiddleware(models.RoleAdmin))
 
 	api.HandleFunc("/auth/{provider}/callback", s.oauthCallback).Methods(http.MethodGet, http.MethodOptions)
 
 	api.HandleFunc("/status", s.getStatus).Methods(http.MethodGet, http.MethodOptions)
-	protected.HandleFunc("/profile/me", s.getMe).Methods(http.MethodGet, http.MethodOptions)
+	authorized.HandleFunc("/profile/me", s.getMe).Methods(http.MethodGet, http.MethodOptions)
 
-	protected.HandleFunc("/media/upload", s.uploadMedia).Methods(http.MethodPost, http.MethodOptions)
+	admin.HandleFunc("/teacher/invite", s.inviteTeacher).Methods(http.MethodPost, http.MethodOptions)
+
+	authorized.HandleFunc("/media/upload", s.uploadMedia).Methods(http.MethodPost, http.MethodOptions)
 
 	return router
 }
