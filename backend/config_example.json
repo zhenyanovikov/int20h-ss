@@ -1,0 +1,20 @@
+{
+  "oauth": {
+    "google": {
+      "redirect_url": "postmessage",
+      "client_id": "<your_client_id>",
+      "client_secret": "<your_client_secret>"
+    }
+  },
+  "postgres": {
+    "password": "<pg password>"
+  },
+  "aws": {
+    "region": "eu-west-1",
+    "access_key_id": "<your_access_key_id>",
+    "access_key_secret": "<your_access_key_secret>",
+    "s3": {
+      "bucket": "<your_bucket_name>"
+    }
+  }
+}
