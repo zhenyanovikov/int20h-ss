@@ -27,11 +27,19 @@ func (s *Service) GenerateToken(ctx context.Context, user *models.User) (*models
 		CreatedAt:   time.Now(),
 	}
 
-	if err = s.repo.Auth().CreateCredentials(ctx, credentials); err != nil {
+	if err = s.authRepo.CreateCredentials(ctx, credentials); err != nil {
 		return nil, fmt.Errorf("create credentials: %w", err)
 	}
 
 	return credentials, nil
+}
+
+func (s *Service) GetCredentials(ctx context.Context, user *models.User) (*models.UserCredentials, error) {
+	if err := s.userRepo.UpsertUserOnEmail(ctx, user); err != nil {
+		return nil, fmt.Errorf("upsert user: %w", err)
+	}
+
+	return s.GenerateToken(ctx, user)
 }
 
 func (s *Service) Login(ctx context.Context, accessToken string) (*models.User, error) {
@@ -52,7 +60,7 @@ func (s *Service) Login(ctx context.Context, accessToken string) (*models.User, 
 		return nil, fmt.Errorf("invalid token")
 	}
 
-	user, err := s.repo.User().GetByID(ctx, uuid.MustParse(userID))
+	user, err := s.userRepo.GetUserByID(ctx, uuid.MustParse(userID))
 	if err != nil {
 		return nil, fmt.Errorf("get user by id: %w", err)
 	}
