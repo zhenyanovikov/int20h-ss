@@ -3,9 +3,8 @@ package httpserver
 import (
 	"context"
 	"fmt"
+	"log/slog"
 	"net/http"
-
-	"oss-backend/internal/models"
 )
 
 func (s *HTTPServer) oauthCallback(w http.ResponseWriter, r *http.Request) {
@@ -21,20 +20,32 @@ func (s *HTTPServer) oauthCallback(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	user := models.User{
-		FirstName: gUser.FirstName,
-		LastName:  gUser.LastName,
-		Email:     gUser.Email,
-		AvatarURL: gUser.Picture,
+	user, err := s.userSrv.GetByEmail(r.Context(), gUser.Email)
+	if err != nil {
+		s.respondError(w, http.StatusInternalServerError, fmt.Errorf("get user by email: %w", err))
+		return
 	}
 
-	res, err := s.authSrv.GetCredentials(context.Background(), &user)
+	if user == nil {
+		s.respondError(w, http.StatusUnauthorized, fmt.Errorf("unauthorized"))
+		return
+	}
+
+	if err = s.userSrv.UpdateAvatar(r.Context(), user.ID, gUser.Picture); err != nil {
+		s.respondError(w, http.StatusInternalServerError, fmt.Errorf("update avatar: %w", err))
+		return
+	}
+
+	res, err := s.authSrv.GenerateToken(context.Background(), user)
 	if err != nil {
 		s.respondError(w, http.StatusInternalServerError, fmt.Errorf("login: %w", err))
 		return
 	}
 
-	s.respond(w, http.StatusOK, res)
+	if err = s.respond(w, http.StatusOK, res); err != nil {
+		slog.Error(fmt.Sprintf("respond: %s", err))
+		return
+	}
 
 	return
 }

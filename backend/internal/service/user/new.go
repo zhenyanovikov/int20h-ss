@@ -3,11 +3,11 @@ package user
 import "oss-backend/internal/persistence"
 
 type Service struct {
-	userRepo persistence.User
+	repo persistence.Repo
 }
 
-func New(userRepo persistence.User) *Service {
+func New(repo persistence.Repo) *Service {
 	return &Service{
-		userRepo: userRepo,
+		repo: repo,
 	}
 }
