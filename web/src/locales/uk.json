@@ -1,1 +1,32 @@
-{}
+{
+  "templates": {},
+  "molecules": {
+    "empty": {
+      "text": {
+        "noData": "Даних немає"
+      }
+    }
+  },
+  "organisms": {
+    "adminTabs": {
+      "faculties": "Факультети",
+      "groups": "Групи",
+      "teachers": "Викладачі",
+      "students": "Студенти"
+    }
+  },
+  "snackbars": {
+    "createFaculty": {
+      "success": "Факультет успішно створений!",
+      "error": "Щось пішло не так!"
+    },
+    "updateFaculty": {
+      "success": "Факультет успішно оновлений!",
+      "error": "Щось пішло не так!"
+    },
+    "deleteFaculty": {
+      "success": "Факультет успішно видалений!",
+      "error": "Щось пішло не так!"
+    }
+  }
+}
