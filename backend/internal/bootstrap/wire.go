@@ -10,8 +10,8 @@ import (
 	"oss-backend/internal/persistence/postgres"
 	"oss-backend/internal/service"
 	"oss-backend/internal/service/auth"
-	"oss-backend/internal/service/aws/mail"
 	"oss-backend/internal/service/aws/media"
+	"oss-backend/internal/service/aws/notifier"
 	"oss-backend/internal/service/faculty"
 	"oss-backend/internal/service/group"
 	"oss-backend/internal/service/httpserver"
@@ -24,7 +24,7 @@ func Up() (*Dependencies, error) {
 		wire.Bind(new(service.Auth), new(*auth.Service)),
 		wire.Bind(new(service.Media), new(*media.Service)),
 		wire.Bind(new(service.Faculty), new(*faculty.Service)),
-		wire.Bind(new(service.Notifier), new(*mail.Service)),
+		wire.Bind(new(service.Notifier), new(*notifier.Service)),
 		wire.Bind(new(service.Group), new(*group.Service)),
 
 		wire.Bind(new(persistence.Repo), new(*postgres.Postgres)),
@@ -38,7 +38,7 @@ func Up() (*Dependencies, error) {
 		auth.New,
 		user.New,
 		faculty.New,
-		mail.New,
+		notifier.New,
 		media.New,
 		group.New,
 		//redis.New,

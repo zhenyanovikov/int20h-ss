@@ -45,5 +45,5 @@ type Media interface {
 }
 
 type Notifier interface {
-	SendEmail(ctx context.Context, recipient *models.User, subject, text string) error
+	SendNotification(ctx context.Context, dto *models.SendNotificationDTO) error
 }

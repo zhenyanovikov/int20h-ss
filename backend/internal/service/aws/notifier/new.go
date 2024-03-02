@@ -1,4 +1,4 @@
-package mail
+package notifier
 
 import (
 	"fmt"
@@ -8,14 +8,16 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ses"
 	"oss-backend/internal/config"
+	"oss-backend/internal/persistence"
 )
 
 type Service struct {
+	repo        persistence.Repo
 	sesClient   *ses.SES
 	sourceEmail *string
 }
 
-func New(cfg config.Config) (*Service, error) {
+func New(cfg config.Config, repo persistence.Repo) (*Service, error) {
 	sess, err := session.NewSession(&aws.Config{
 		Region: aws.String(cfg.AWS.Region),
 		Credentials: credentials.NewStaticCredentials(
@@ -31,6 +33,7 @@ func New(cfg config.Config) (*Service, error) {
 	sesClient := ses.New(sess)
 
 	return &Service{
+		repo:        repo,
 		sesClient:   sesClient,
 		sourceEmail: aws.String(cfg.AWS.SES.SourceEmail),
 	}, nil

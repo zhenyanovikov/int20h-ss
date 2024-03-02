@@ -10,8 +10,8 @@ import (
 	"oss-backend/internal/config"
 	"oss-backend/internal/persistence/postgres"
 	"oss-backend/internal/service/auth"
-	"oss-backend/internal/service/aws/mail"
 	"oss-backend/internal/service/aws/media"
+	"oss-backend/internal/service/aws/notifier"
 	"oss-backend/internal/service/faculty"
 	"oss-backend/internal/service/group"
 	"oss-backend/internal/service/httpserver"
@@ -35,12 +35,12 @@ func Up() (*Dependencies, error) {
 	}
 	facultyService := faculty.New(postgresPostgres)
 	groupService := group.New(postgresPostgres)
-	mailService, err := mail.New(configConfig)
+	notifierService, err := notifier.New(configConfig, postgresPostgres)
 	if err != nil {
 		return nil, err
 	}
-	httpServer := httpserver.New(configConfig, service, userService, mediaService, facultyService, groupService, mailService)
-	dependencies := NewDependencies(configConfig, httpServer, service, userService, postgresPostgres, mailService)
+	httpServer := httpserver.New(configConfig, service, userService, mediaService, facultyService, groupService, notifierService)
+	dependencies := NewDependencies(configConfig, httpServer, service, userService, postgresPostgres, notifierService)
 	return dependencies, nil
 }
 

@@ -1,11 +1,11 @@
 package httpserver
 
 import (
-	"encoding/json"
-	"github.com/google/uuid"
-	"github.com/gorilla/mux"
 	"log/slog"
 	"net/http"
+
+	"github.com/google/uuid"
+	"github.com/gorilla/mux"
 
 	"oss-backend/internal/models"
 )
@@ -45,7 +45,7 @@ func (s *HTTPServer) getStudentsByGroupID(w http.ResponseWriter, r *http.Request
 func (s *HTTPServer) inviteStudent(w http.ResponseWriter, r *http.Request) {
 	var dto models.InviteStudentDTO
 
-	if err := json.NewDecoder(r.Body).Decode(&dto); err != nil {
+	if err := s.decodeJSON(r, &dto); err != nil {
 		s.respondError(w, http.StatusBadRequest, err)
 		return
 	}
