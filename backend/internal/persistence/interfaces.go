@@ -11,6 +11,7 @@ type Repo interface {
 	Auth() Auth
 	User() User
 	Faculty() Faculty
+	Group() Group
 }
 
 type Auth interface {
@@ -29,6 +30,14 @@ type User interface {
 	CreateStudent(ctx context.Context, student *models.Student) error
 
 	Update(ctx context.Context, user *models.User) error
+}
+
+type Group interface {
+	ListGroups(ctx context.Context) ([]*models.Group, error)
+	ListGroupsByFacultyID(ctx context.Context, facultyID uuid.UUID) ([]*models.Group, error)
+	UpdateGroup(ctx context.Context, group *models.Group) error
+	CreateGroup(ctx context.Context, group *models.Group) error
+	DeleteGroup(ctx context.Context, groupID uuid.UUID) error
 }
 
 type Faculty interface {
