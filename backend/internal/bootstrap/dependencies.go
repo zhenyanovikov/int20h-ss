@@ -12,20 +12,22 @@ type Dependencies struct {
 
 	HTTPServer *httpserver.HTTPServer
 
-	AuthService service.Auth
-	UserService service.User
+	AuthService     service.Auth
+	UserService     service.User
+	NotifierService service.Notifier
 
 	repo persistence.Repo
 }
 
 func NewDependencies(config config.Config, httpServer *httpserver.HTTPServer,
 	authSrv service.Auth, userSrv service.User,
-	repo persistence.Repo) *Dependencies {
+	repo persistence.Repo, notifierSrv service.Notifier) *Dependencies {
 	return &Dependencies{
-		Config:      config,
-		HTTPServer:  httpServer,
-		AuthService: authSrv,
-		UserService: userSrv,
-		repo:        repo,
+		Config:          config,
+		HTTPServer:      httpServer,
+		AuthService:     authSrv,
+		UserService:     userSrv,
+		NotifierService: notifierSrv,
+		repo:            repo,
 	}
 }
