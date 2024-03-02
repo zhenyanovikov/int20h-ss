@@ -8,5 +8,5 @@ type Group struct {
 	YearStart int       `json:"yearStart"`
 	FacultyID uuid.UUID `json:"facultyID" bun:",nullzero"`
 
-	YearOfStudy int `json:"yearOfStudy" bun:"scanonly"`
+	YearOfStudy int `json:"yearOfStudy" bun:",scanonly"`
 }
