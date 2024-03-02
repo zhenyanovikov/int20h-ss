@@ -32,3 +32,7 @@ type Faculty interface {
 type Media interface {
 	Upload(ctx context.Context, fileReader io.Reader, extension string) (url string, err error)
 }
+
+type Notifier interface {
+	SendEmail(ctx context.Context, recipient *models.User, subject, text string) error
+}

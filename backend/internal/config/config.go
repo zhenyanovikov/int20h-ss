@@ -60,10 +60,15 @@ type AWS struct {
 	AccessKeyID     string `json:"access_key_id"`
 	SecretAccessKey string `json:"access_key_secret"`
 	S3              S3     `json:"s3"`
+	SES             SES    `json:"ses"`
 }
 
 type S3 struct {
 	Bucket string `json:"bucket"`
+}
+
+type SES struct {
+	SourceEmail string `json:"source_email"`
 }
 
 func New() (Config, error) {
