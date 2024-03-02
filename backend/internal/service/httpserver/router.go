@@ -35,6 +35,10 @@ func (s *HTTPServer) newRouter(_ config.Config) *mux.Router {
 	admin.HandleFunc("/teacher/invite", s.inviteTeacher).Methods(http.MethodPost, http.MethodOptions)
 	admin.HandleFunc("/teacher", s.getTeachers).Methods(http.MethodGet, http.MethodOptions)
 
+	admin.HandleFunc("/student/invite", s.inviteStudent).Methods(http.MethodPost, http.MethodOptions)
+	admin.HandleFunc("/student", s.getStudents).Methods(http.MethodGet, http.MethodOptions)
+	admin.HandleFunc("/group/{group_id}/students", s.getStudentsByGroupID).Methods(http.MethodGet, http.MethodOptions)
+
 	authorized.HandleFunc("/media/upload", s.uploadMedia).Methods(http.MethodPost, http.MethodOptions)
 
 	authorized.HandleFunc("/faculty/{faculty_id}", s.getFacultyByID).Methods(http.MethodGet, http.MethodOptions)
