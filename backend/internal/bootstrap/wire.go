@@ -10,6 +10,7 @@ import (
 	"oss-backend/internal/persistence/postgres"
 	"oss-backend/internal/service"
 	"oss-backend/internal/service/auth"
+	"oss-backend/internal/service/faculty"
 	"oss-backend/internal/service/httpserver"
 	"oss-backend/internal/service/media"
 	"oss-backend/internal/service/user"
@@ -31,6 +32,7 @@ func Up() (*Dependencies, error) {
 		postgres.New,
 		auth.New,
 		user.New,
+		faculty.New,
 		media.New,
 		//redis.New,
 		NewDependencies,
