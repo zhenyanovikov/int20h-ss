@@ -12,6 +12,7 @@ type Repo interface {
 	User() User
 	Faculty() Faculty
 	Group() Group
+	Notification() Notification
 }
 
 type Auth interface {
@@ -47,4 +48,11 @@ type Faculty interface {
 	CreateFaculty(ctx context.Context, faculty *models.Faculty) error
 	UpdateFaculty(ctx context.Context, faculty *models.Faculty) error
 	DeleteFaculty(ctx context.Context, facultyID uuid.UUID) error
+}
+
+type Notification interface {
+	GetTemplates(ctx context.Context) ([]models.NotificationTemplate, error)
+	CreateTemplate(ctx context.Context, template *models.NotificationTemplate) error
+	UpdateTemplate(ctx context.Context, template *models.NotificationTemplate) error
+	DeleteTemplate(ctx context.Context, templateID uuid.UUID) error
 }

@@ -11,10 +11,10 @@ import (
 	"oss-backend/internal/persistence/postgres"
 	"oss-backend/internal/service/auth"
 	"oss-backend/internal/service/aws/media"
-	"oss-backend/internal/service/aws/notifier"
 	"oss-backend/internal/service/faculty"
 	"oss-backend/internal/service/group"
 	"oss-backend/internal/service/httpserver"
+	"oss-backend/internal/service/notifier"
 	"oss-backend/internal/service/user"
 )
 

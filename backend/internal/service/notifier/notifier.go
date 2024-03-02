@@ -79,3 +79,40 @@ func (s Service) sendEmail(ctx context.Context, recipient *models.User, subject,
 
 	return nil
 }
+
+func (s Service) GetTemplates(ctx context.Context) ([]models.NotificationTemplate, error) {
+	templates, err := s.repo.Notification().GetTemplates(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get templates: %v", err)
+	}
+
+	return templates, nil
+}
+
+func (s Service) CreateTemplate(ctx context.Context, template *models.NotificationTemplate) error {
+	if err := s.repo.Notification().CreateTemplate(ctx, template); err != nil {
+		return fmt.Errorf("failed to create template: %v", err)
+	}
+
+	return nil
+}
+
+func (s Service) UpdateTemplate(ctx context.Context, template *models.NotificationTemplate) error {
+	if template.ID == uuid.Nil {
+		return fmt.Errorf("id must not be nil")
+	}
+
+	if err := s.repo.Notification().UpdateTemplate(ctx, template); err != nil {
+		return fmt.Errorf("failed to update template: %v", err)
+	}
+
+	return nil
+}
+
+func (s Service) DeleteTemplate(ctx context.Context, templateID uuid.UUID) error {
+	if err := s.repo.Notification().DeleteTemplate(ctx, templateID); err != nil {
+		return fmt.Errorf("failed to delete template: %v", err)
+	}
+
+	return nil
+}

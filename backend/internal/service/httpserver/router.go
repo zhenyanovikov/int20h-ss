@@ -46,10 +46,10 @@ func (s *HTTPServer) newRouter(_ config.Config) *mux.Router {
 	admin.HandleFunc("/group/{group_id}", s.deleteGroup).Methods(http.MethodDelete, http.MethodOptions)
 
 	authorized.HandleFunc("/notification/send", s.sendNotification).Methods(http.MethodPost, http.MethodOptions)
-	//authorized.HandleFunc("/notification/email/template", s.getNotificationTemplates).Methods(http.MethodGet, http.MethodOptions)
-	//authorized.HandleFunc("/notification/email/template", s.createNotificationTemplate).Methods(http.MethodPost, http.MethodOptions)
-	//authorized.HandleFunc("/notification/email/template/{template_id}", s.updateNotificationTemplate).Methods(http.MethodPut, http.MethodOptions)
-	//authorized.HandleFunc("/notification/email/template/{template_id}", s.deleteNotificationTemplates).Methods(http.MethodDelete, http.MethodOptions)
+	authorized.HandleFunc("/notification/email/template", s.getNotificationTemplates).Methods(http.MethodGet, http.MethodOptions)
+	authorized.HandleFunc("/notification/email/template", s.createNotificationTemplate).Methods(http.MethodPost, http.MethodOptions)
+	authorized.HandleFunc("/notification/email/template/{template_id}", s.updateNotificationTemplate).Methods(http.MethodPut, http.MethodOptions)
+	authorized.HandleFunc("/notification/email/template/{template_id}", s.deleteNotificationTemplates).Methods(http.MethodDelete, http.MethodOptions)
 
 	authorized.HandleFunc("/media/upload", s.uploadMedia).Methods(http.MethodPost, http.MethodOptions)
 
