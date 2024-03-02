@@ -15,6 +15,10 @@ func (s *Service) GetByEmail(ctx context.Context, email string) (*models.User, e
 	return s.repo.User().GetByEmail(ctx, email)
 }
 
-func (s *Service) UpdateAvatar(ctx context.Context, userID uuid.UUID, pictureURL string) error {
-	return s.repo.User().UpdateAvatar(ctx, userID, pictureURL)
+func (s *Service) GetTeachers(ctx context.Context) ([]models.Teacher, error) {
+	return s.repo.User().GetByRole(ctx, models.RoleTeacher)
+}
+
+func (s *Service) Update(ctx context.Context, user *models.User) error {
+	return s.repo.User().Update(ctx, user)
 }

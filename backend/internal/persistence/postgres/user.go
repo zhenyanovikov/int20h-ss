@@ -35,6 +35,21 @@ func (p *Postgres) GetByEmail(ctx context.Context, email string) (*models.User, 
 	return &user, nil
 }
 
+func (p *Postgres) GetByRole(ctx context.Context, role models.Role) ([]models.Teacher, error) {
+	var teachers []models.Teacher
+
+	err := p.db.NewSelect().
+		Model(&teachers).
+		Relation("User").
+		Where("role = ?", role).
+		Scan(ctx)
+	if err != nil {
+		return nil, p.err(err)
+	}
+
+	return teachers, nil
+}
+
 func (p *Postgres) CreateUser(ctx context.Context, user *models.User) error {
 	_, err := p.db.NewInsert().
 		Model(user).
@@ -59,11 +74,10 @@ func (p *Postgres) CreateTeacher(ctx context.Context, teacher *models.Teacher) e
 	return nil
 }
 
-func (p *Postgres) UpdateAvatar(ctx context.Context, userID uuid.UUID, pictureURL string) error {
+func (p *Postgres) Update(ctx context.Context, user *models.User) error {
 	_, err := p.db.NewUpdate().
-		Model(&models.User{}).
-		Set("picture_url", pictureURL).
-		Where("id = ?", userID).
+		Model(user).
+		WherePK().
 		Exec(ctx)
 	if err != nil {
 		return p.err(err)

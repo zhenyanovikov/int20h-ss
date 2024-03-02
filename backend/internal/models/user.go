@@ -16,5 +16,5 @@ type User struct {
 	LastName  string    `json:"lastName"`
 	Email     string    `json:"email"`
 	AvatarURL string    `json:"avatarUrl"`
-	Role      Role      `json:"role"`
+	Role      Role      `json:"role" bun:",nullzero"`
 }

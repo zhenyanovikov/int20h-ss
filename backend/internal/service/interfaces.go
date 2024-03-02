@@ -16,8 +16,9 @@ type Auth interface {
 type User interface {
 	GetByID(ctx context.Context, userID uuid.UUID) (*models.User, error)
 	GetByEmail(ctx context.Context, email string) (*models.User, error)
+	GetTeachers(ctx context.Context) ([]models.Teacher, error)
 	InviteTeacher(ctx context.Context, dto *models.InviteTeacherDTO) error
-	UpdateAvatar(ctx context.Context, userID uuid.UUID, pictureURL string) error
+	Update(ctx context.Context, user *models.User) error
 }
 
 type Media interface {

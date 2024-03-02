@@ -23,7 +23,7 @@ func New(cfg config.Postgres) *Postgres {
 	sqlDB := sql.OpenDB(pgdriver.NewConnector(pgdriver.WithDSN(dsn)))
 	db := bun.NewDB(sqlDB, pgdialect.New())
 	if cfg.Log {
-		db.AddQueryHook(bundebug.NewQueryHook())
+		db.AddQueryHook(bundebug.NewQueryHook(bundebug.WithVerbose(true)))
 	}
 
 	return &Postgres{

@@ -31,7 +31,11 @@ func (s *HTTPServer) oauthCallback(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err = s.userSrv.UpdateAvatar(r.Context(), user.ID, gUser.Picture); err != nil {
+	user.FirstName = gUser.FirstName
+	user.LastName = gUser.LastName
+	user.AvatarURL = gUser.Picture
+
+	if err = s.userSrv.Update(r.Context(), user); err != nil {
 		s.respondError(w, http.StatusInternalServerError, fmt.Errorf("update avatar: %w", err))
 		return
 	}

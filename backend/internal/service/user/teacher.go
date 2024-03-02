@@ -10,10 +10,9 @@ import (
 
 func (s *Service) InviteTeacher(ctx context.Context, dto *models.InviteTeacherDTO) error {
 	user := &models.User{
-		ID:        uuid.New(),
-		Email:     dto.Email,
-		FirstName: dto.FirstName,
-		LastName:  dto.LastName,
+		ID:    uuid.New(),
+		Email: dto.Email,
+		Role:  models.RoleTeacher,
 	}
 
 	teacher := &models.Teacher{
