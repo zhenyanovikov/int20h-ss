@@ -16,9 +16,20 @@ type Auth interface {
 type User interface {
 	GetByID(ctx context.Context, userID uuid.UUID) (*models.User, error)
 	GetByEmail(ctx context.Context, email string) (*models.User, error)
-	GetTeachers(ctx context.Context) ([]models.Teacher, error)
+	ListTeachers(ctx context.Context) ([]models.Teacher, error)
+	ListStudents(ctx context.Context) ([]models.Student, error)
+	ListStudentsByGroupID(ctx context.Context, groupID uuid.UUID) ([]models.Student, error)
 	InviteTeacher(ctx context.Context, dto *models.InviteTeacherDTO) error
+	InviteStudent(ctx context.Context, dto *models.InviteStudentDTO) error
 	Update(ctx context.Context, user *models.User) error
+}
+
+type Group interface {
+	ListGroups(ctx context.Context) ([]*models.Group, error)
+	ListGroupsByFacultyID(ctx context.Context, facultyID uuid.UUID) ([]*models.Group, error)
+	UpdateGroup(ctx context.Context, group *models.Group) error
+	CreateGroup(ctx context.Context, group *models.Group) error
+	DeleteGroup(ctx context.Context, groupID uuid.UUID) error
 }
 
 type Faculty interface {
