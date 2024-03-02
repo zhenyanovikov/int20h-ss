@@ -13,6 +13,16 @@
       "groups": "Групи",
       "teachers": "Викладачі",
       "students": "Студенти"
+    },
+    "inviteTeacherForm": {
+      "form": {
+        "button": {
+          "submit": "Додати викладача"
+        },
+        "amount": {
+          "email": "Пошта"
+        }
+      }
     }
   },
   "snackbars": {
