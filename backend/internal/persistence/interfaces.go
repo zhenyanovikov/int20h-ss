@@ -10,6 +10,7 @@ import (
 type Repo interface {
 	Auth() Auth
 	User() User
+	Faculty() Faculty
 }
 
 type Auth interface {
@@ -27,4 +28,12 @@ type User interface {
 	CreateTeacher(ctx context.Context, teacher *models.Teacher) error
 
 	UpdateAvatar(ctx context.Context, userID uuid.UUID, pictureURL string) error
+}
+
+type Faculty interface {
+	ListFaculties(ctx context.Context) ([]*models.Faculty, error)
+	GetFacultyByID(ctx context.Context, facultyID uuid.UUID) (*models.Faculty, error)
+	CreateFaculty(ctx context.Context, faculty *models.Faculty) error
+	UpdateFaculty(ctx context.Context, faculty *models.Faculty) error
+	DeleteFaculty(ctx context.Context, facultyID uuid.UUID) error
 }

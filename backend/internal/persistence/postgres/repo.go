@@ -9,3 +9,7 @@ func (p *Postgres) Auth() persistence.Auth {
 func (p *Postgres) User() persistence.User {
 	return p
 }
+
+func (p *Postgres) Faculty() persistence.Faculty {
+	return p
+}

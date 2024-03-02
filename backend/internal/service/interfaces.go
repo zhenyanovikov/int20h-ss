@@ -20,6 +20,14 @@ type User interface {
 	UpdateAvatar(ctx context.Context, userID uuid.UUID, pictureURL string) error
 }
 
+type Faculty interface {
+	GetFacultyByID(id uuid.UUID) (*models.Faculty, error)
+	ListFaculties() ([]*models.Faculty, error)
+	CreateFaculty(faculty *models.Faculty) error
+	UpdateFaculty(faculty *models.Faculty) error
+	DeleteFaculty(id uuid.UUID) error
+}
+
 type Media interface {
 	Upload(ctx context.Context, fileReader io.Reader, extension string) (url string, err error)
 }
