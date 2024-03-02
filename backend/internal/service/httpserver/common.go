@@ -22,3 +22,7 @@ func (s *HTTPServer) respond(w http.ResponseWriter, status int, payload any) err
 func (s *HTTPServer) respondError(w http.ResponseWriter, status int, err error) {
 	s.respond(w, status, map[string]string{"error": err.Error()})
 }
+
+func (s *HTTPServer) decodeJSON(r *http.Request, v any) error {
+	return json.NewDecoder(r.Body).Decode(v)
+}

@@ -5,6 +5,7 @@ import (
 
 	"github.com/google/uuid"
 	"oss-backend/internal/models"
+	"oss-backend/internal/persistence"
 )
 
 func (p *Postgres) GetByID(ctx context.Context, id uuid.UUID) (*models.User, error) {
@@ -40,7 +41,7 @@ func (p *Postgres) ListTeachers(ctx context.Context) ([]models.Teacher, error) {
 
 	err := p.db.NewSelect().
 		Model(&teachers).
-		Relation("User").
+		Relation(RelationUser).
 		Where("role = ?", models.RoleTeacher).
 		Scan(ctx)
 	if err != nil {
@@ -50,13 +51,14 @@ func (p *Postgres) ListTeachers(ctx context.Context) ([]models.Teacher, error) {
 	return teachers, nil
 }
 
-func (p *Postgres) ListStudents(ctx context.Context) ([]models.Student, error) {
+func (p *Postgres) ListStudents(ctx context.Context, opts ...persistence.QueryBuilder) ([]models.Student, error) {
 	var students []models.Student
 
 	err := p.db.NewSelect().
 		Model(&students).
-		Relation("User").
+		Relation(RelationUser).
 		Where("role = ?", models.RoleStudent).
+		ApplyQueryBuilder(p.apply(opts)).
 		Scan(ctx)
 	if err != nil {
 		return nil, p.err(err)
@@ -70,14 +72,31 @@ func (p *Postgres) ListStudentsByGroupID(ctx context.Context, groupID uuid.UUID)
 
 	err := p.db.NewSelect().
 		Model(&students).
-		Relation("User").
-		Where("role = ? AND group_id = ?", models.RoleStudent, groupID).
+		Relation(RelationUser).
+		Where("group_id = ?", groupID).
 		Scan(ctx)
 	if err != nil {
 		return nil, p.err(err)
 	}
 
 	return students, nil
+}
+
+func (p *Postgres) ListStudentsByFacultyID(ctx context.Context, facultyID uuid.UUID) ([]models.Student, error) {
+	var students []models.Student
+
+	err := p.db.NewSelect().
+		Model(&students).
+		Relation(RelationUser).
+		Join("JOIN groups ON groups.id = students.group_id").
+		Where("groups.faculty_id = ?", facultyID).
+		Scan(ctx)
+	if err != nil {
+		return nil, p.err(err)
+	}
+
+	return students, nil
+
 }
 
 func (p *Postgres) CreateUser(ctx context.Context, user *models.User) error {

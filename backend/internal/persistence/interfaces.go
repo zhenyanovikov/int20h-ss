@@ -12,6 +12,7 @@ type Repo interface {
 	User() User
 	Faculty() Faculty
 	Group() Group
+	Notification() Notification
 }
 
 type Auth interface {
@@ -22,8 +23,9 @@ type User interface {
 	GetByID(ctx context.Context, id uuid.UUID) (*models.User, error)
 	GetByEmail(ctx context.Context, email string) (*models.User, error)
 	ListTeachers(ctx context.Context) ([]models.Teacher, error)
-	ListStudents(ctx context.Context) ([]models.Student, error)
+	ListStudents(ctx context.Context, opts ...QueryBuilder) ([]models.Student, error)
 	ListStudentsByGroupID(ctx context.Context, groupID uuid.UUID) ([]models.Student, error)
+	ListStudentsByFacultyID(ctx context.Context, facultyID uuid.UUID) ([]models.Student, error)
 
 	CreateUser(ctx context.Context, user *models.User) error
 	CreateTeacher(ctx context.Context, teacher *models.Teacher) error
@@ -46,4 +48,11 @@ type Faculty interface {
 	CreateFaculty(ctx context.Context, faculty *models.Faculty) error
 	UpdateFaculty(ctx context.Context, faculty *models.Faculty) error
 	DeleteFaculty(ctx context.Context, facultyID uuid.UUID) error
+}
+
+type Notification interface {
+	GetTemplates(ctx context.Context) ([]models.NotificationTemplate, error)
+	CreateTemplate(ctx context.Context, template *models.NotificationTemplate) error
+	UpdateTemplate(ctx context.Context, template *models.NotificationTemplate) error
+	DeleteTemplate(ctx context.Context, templateID uuid.UUID) error
 }

@@ -1,7 +1,6 @@
 package httpserver
 
 import (
-	"encoding/json"
 	"log/slog"
 	"net/http"
 
@@ -24,7 +23,7 @@ func (s *HTTPServer) getTeachers(w http.ResponseWriter, r *http.Request) {
 func (s *HTTPServer) inviteTeacher(w http.ResponseWriter, r *http.Request) {
 	var dto models.InviteTeacherDTO
 
-	if err := json.NewDecoder(r.Body).Decode(&dto); err != nil {
+	if err := s.decodeJSON(r, &dto); err != nil {
 		s.respondError(w, http.StatusBadRequest, err)
 		return
 	}
