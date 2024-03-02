@@ -1,1 +1,1 @@
-export const BASE_URL = "https://lorem.blago.yevhenii.live/api/v1";
+export const BASE_URL = "https://api.lorem.yevhenii.live/api/v1";
