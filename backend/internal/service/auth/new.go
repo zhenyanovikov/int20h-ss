@@ -8,13 +8,15 @@ import (
 type Service struct {
 	cfg config.Config
 
-	repo persistence.Repo
+	authRepo persistence.Auth
+	userRepo persistence.User
 }
 
-func New(cfg config.Config, repo persistence.Repo) *Service {
+func New(cfg config.Config, authRepo persistence.Auth, userRepo persistence.User) *Service {
 	return &Service{
 		cfg: cfg,
 
-		repo: repo,
+		authRepo: authRepo,
+		userRepo: userRepo,
 	}
 }

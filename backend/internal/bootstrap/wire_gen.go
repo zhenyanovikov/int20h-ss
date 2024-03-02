@@ -24,14 +24,14 @@ func Up() (*Dependencies, error) {
 	}
 	configPostgres := getPostgresConfig(configConfig)
 	postgresPostgres := postgres.New(configPostgres)
-	service := auth.New(configConfig, postgresPostgres)
+	service := auth.New(configConfig, postgresPostgres, postgresPostgres)
 	userService := user.New(postgresPostgres)
 	mediaService, err := media.New(configConfig)
 	if err != nil {
 		return nil, err
 	}
 	httpServer := httpserver.New(configConfig, service, userService, mediaService)
-	dependencies := NewDependencies(configConfig, httpServer, service, userService, postgresPostgres)
+	dependencies := NewDependencies(configConfig, httpServer, service, userService, postgresPostgres, postgresPostgres)
 	return dependencies, nil
 }
 
