@@ -15,7 +15,7 @@ func (s *HTTPServer) newRouter(_ config.Config) *mux.Router {
 		router     = mux.NewRouter()
 		api        = router.PathPrefix("/api/v1").Subrouter()
 		authorized = api.PathPrefix("/").Subrouter()
-		admin      = authorized.PathPrefix("/admin").Subrouter()
+		admin      = authorized.PathPrefix("/").Subrouter()
 	)
 
 	goth.UseProviders(
