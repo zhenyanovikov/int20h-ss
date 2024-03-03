@@ -10,6 +10,7 @@ import (
 	"oss-backend/internal/persistence/postgres"
 	"oss-backend/internal/service"
 	"oss-backend/internal/service/activities"
+	"oss-backend/internal/service/assignments"
 	"oss-backend/internal/service/auth"
 	"oss-backend/internal/service/aws/media"
 	"oss-backend/internal/service/faculty"
@@ -30,6 +31,7 @@ func Up() (*Dependencies, error) {
 		wire.Bind(new(service.Group), new(*group.Service)),
 		wire.Bind(new(service.Activity), new(*activities.Service)),
 		wire.Bind(new(service.Subject), new(*subject.Service)),
+		wire.Bind(new(service.Assignment), new(*assignments.Service)),
 
 		wire.Bind(new(persistence.Repo), new(*postgres.Postgres)),
 
@@ -46,6 +48,7 @@ func Up() (*Dependencies, error) {
 		group.New,
 		activities.New,
 		subject.New,
+		assignments.New,
 		NewDependencies,
 	)
 	return &Dependencies{}, nil

@@ -1,8 +1,8 @@
 BEGIN;
 
-CREATE TABLE subject
+CREATE TABLE subjects
 (
-    id         uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id         uuid unique DEFAULT uuid_generate_v4(),
     teacher_id uuid NOT NULL REFERENCES teachers (id),
     group_id   uuid NOT NULL REFERENCES groups (id),
     name text NOT NULL,
