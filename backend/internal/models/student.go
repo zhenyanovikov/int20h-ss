@@ -1,8 +1,9 @@
 package models
 
 import (
-	"github.com/google/uuid"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 type Student struct {
@@ -10,11 +11,11 @@ type Student struct {
 	UserID uuid.UUID `json:"-"`
 	User   *User     `json:"user" bun:"rel:belongs-to"`
 
-	GroupID   uuid.UUID `json:"group_id" bun:",nullzero"`
-	CreatedAt time.Time `json:"created_at" bun:",nullzero"`
+	GroupID   uuid.UUID `json:"-" bun:",nullzero"`
+	CreatedAt time.Time `json:"createdAt" bun:",nullzero"`
 }
 
 type InviteStudentDTO struct {
 	Email   string    `json:"email"`
-	GroupID uuid.UUID `json:"group_id"`
+	GroupID uuid.UUID `json:"groupId"`
 }

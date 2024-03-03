@@ -88,7 +88,7 @@ func (p *Postgres) ListStudentsByFacultyID(ctx context.Context, facultyID uuid.U
 	err := p.db.NewSelect().
 		Model(&students).
 		Relation(RelationUser).
-		Join("JOIN groups ON groups.id = students.group_id").
+		Join("JOIN groups ON groups.id = student.group_id").
 		Where("groups.faculty_id = ?", facultyID).
 		Scan(ctx)
 	if err != nil {

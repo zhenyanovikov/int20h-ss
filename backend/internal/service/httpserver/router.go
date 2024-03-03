@@ -60,6 +60,8 @@ func (s *HTTPServer) newRouter(_ config.Config) *mux.Router {
 	admin.HandleFunc("/faculty", s.updateFaculty).Methods(http.MethodPut, http.MethodOptions)
 	admin.HandleFunc("/faculty/{faculty_id}", s.deleteFaculty).Methods(http.MethodDelete, http.MethodOptions)
 
+	//authorized.HandleFunc("/activities/student/{student_id}", s.createActivity).Methods(http.MethodPost, http.MethodOptions)
+
 	return router
 }
 
