@@ -49,6 +49,7 @@ export function getSendEmailValidationSchema() {
       .string()
       .required("organisms.sendEmailForm.form.subject.requiredHelperText"),
     facultyId: yup.string().notRequired(),
+    groupId: yup.string().notRequired(),
     body: yup
       .string()
       .required("organisms.sendEmailForm.form.body.requiredHelperText"),

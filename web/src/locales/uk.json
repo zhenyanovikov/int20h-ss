@@ -108,6 +108,9 @@
         },
         "facultyId": {
           "label": "Факультет"
+        },
+        "groupId": {
+          "label": "Група"
         }
       },
       "button": {
