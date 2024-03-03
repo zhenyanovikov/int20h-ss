@@ -1,7 +1,8 @@
-import { Box, Stack, CircularProgress } from "@mui/material";
+import { Stack, CircularProgress } from "@mui/material";
 import Empty from "../../molecules/Empty/Empty";
 import CreateFacultyForm from "../../organisms/CreateFacultyForm/CreateFacultyForm";
 import AdminTemplate from "../../templates/AdminTemplate/AdminTemplate";
+import Faculties from "../../organisms/Faculties/Faculties";
 
 function FacultiesTemplate({ facultiesData, isGetFacultiesLoading }) {
   return (
@@ -11,10 +12,16 @@ function FacultiesTemplate({ facultiesData, isGetFacultiesLoading }) {
           <CircularProgress />
         </Stack>
       ) : (
-        <Stack spacing={2}>
+        <Stack spacing={4}>
           <CreateFacultyForm />
 
-          <>{!facultiesData.length ? <Empty /> : <Box />}</>
+          <>
+            {!facultiesData.length ? (
+              <Empty />
+            ) : (
+              <Faculties faculties={facultiesData} />
+            )}
+          </>
         </Stack>
       )}
     </AdminTemplate>

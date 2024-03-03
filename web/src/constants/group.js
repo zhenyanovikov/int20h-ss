@@ -1,2 +1,2 @@
-export const GROUPS_URL = "/admin/groups";
-export const GROUPS_KEY = "/admingroups";
+export const GROUPS_URL = "/groups";
+export const GROUPS_KEY = "groups";
