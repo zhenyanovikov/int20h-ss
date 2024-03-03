@@ -11,13 +11,17 @@ import (
 )
 
 func (s *HTTPServer) getStudents(w http.ResponseWriter, r *http.Request) {
-	teachers, err := s.userSrv.ListStudents(r.Context())
+	students, err := s.userSrv.ListStudents(r.Context())
 	if err != nil {
 		s.respondError(w, http.StatusInternalServerError, err)
 		return
 	}
 
-	if err = s.respond(w, http.StatusOK, teachers); err != nil {
+	if students == nil {
+		students = []models.Student{}
+	}
+
+	if err = s.respond(w, http.StatusOK, students); err != nil {
 		slog.Error("failed to respond: %v", err)
 		return
 	}
