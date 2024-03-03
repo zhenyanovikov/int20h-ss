@@ -16,6 +16,7 @@ import (
 	"oss-backend/internal/service/group"
 	"oss-backend/internal/service/httpserver"
 	"oss-backend/internal/service/notifier"
+	"oss-backend/internal/service/subject"
 	"oss-backend/internal/service/user"
 )
 
@@ -40,8 +41,9 @@ func Up() (*Dependencies, error) {
 	if err != nil {
 		return nil, err
 	}
+	subjectService := subject.New(postgresPostgres)
 	activitiesService := activities.New(postgresPostgres)
-	httpServer := httpserver.New(configConfig, service, userService, mediaService, facultyService, groupService, notifierService, activitiesService)
+	httpServer := httpserver.New(configConfig, service, userService, mediaService, facultyService, groupService, notifierService, subjectService, activitiesService)
 	dependencies := NewDependencies(configConfig, httpServer, service, userService, postgresPostgres, notifierService, activitiesService)
 	return dependencies, nil
 }

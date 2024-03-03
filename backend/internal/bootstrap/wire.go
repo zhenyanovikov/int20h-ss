@@ -16,6 +16,7 @@ import (
 	"oss-backend/internal/service/group"
 	"oss-backend/internal/service/httpserver"
 	"oss-backend/internal/service/notifier"
+	"oss-backend/internal/service/subject"
 	"oss-backend/internal/service/user"
 )
 
@@ -28,9 +29,9 @@ func Up() (*Dependencies, error) {
 		wire.Bind(new(service.Notifier), new(*notifier.Service)),
 		wire.Bind(new(service.Group), new(*group.Service)),
 		wire.Bind(new(service.Activity), new(*activities.Service)),
+		wire.Bind(new(service.Subject), new(*subject.Service)),
 
 		wire.Bind(new(persistence.Repo), new(*postgres.Postgres)),
-		//wire.Bind(new(persistence.Cache), new(*redis.Redis)),
 
 		config.New,
 		httpserver.New,
@@ -44,7 +45,7 @@ func Up() (*Dependencies, error) {
 		media.New,
 		group.New,
 		activities.New,
-		//redis.New,
+		subject.New,
 		NewDependencies,
 	)
 	return &Dependencies{}, nil
