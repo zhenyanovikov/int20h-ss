@@ -10,10 +10,16 @@ import (
 type QueryBuilder func(idb bun.QueryBuilder) bun.QueryBuilder
 type SelectOption func(query *bun.SelectQuery) *bun.SelectQuery
 
-func WithTitleLike(title string) QueryBuilder {
+func Like(fieldName string, title string) QueryBuilder {
 	return func(query bun.QueryBuilder) bun.QueryBuilder {
 		text := "%" + strings.ToLower(title) + "%"
-		return query.Where("lower(title) ILIKE ?", text)
+		return query.Where("lower("+fieldName+") ILIKE ?", text)
+	}
+}
+
+func Exact(fieldName string, data any) QueryBuilder {
+	return func(query bun.QueryBuilder) bun.QueryBuilder {
+		return query.Where(fieldName+" = ?", data)
 	}
 }
 

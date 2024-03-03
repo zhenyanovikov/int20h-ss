@@ -15,6 +15,7 @@ type HTTPServer struct {
 
 	authSrv     service.Auth
 	userSrv     service.User
+	subjectSrv  service.Subject
 	groupSrv    service.Group
 	facultySrv  service.Faculty
 	mediaSrv    service.Media
@@ -25,7 +26,8 @@ type HTTPServer struct {
 func New(cfg config.Config, authSrv service.Auth,
 	userSrv service.User, mediaSrv service.Media,
 	facultySrv service.Faculty, groupSrv service.Group,
-	notifierSrv service.Notifier, activitySrv service.Activity) *HTTPServer {
+	notifierSrv service.Notifier, subjectSrv service.Subject,
+	activitySrv service.Activity) *HTTPServer {
 	server := &HTTPServer{
 		cfg:         cfg,
 		authSrv:     authSrv,
@@ -35,6 +37,7 @@ func New(cfg config.Config, authSrv service.Auth,
 		groupSrv:    groupSrv,
 		notifierSrv: notifierSrv,
 		activitySrv: activitySrv,
+		subjectSrv:  subjectSrv,
 		googleOAuthCfg: &oauth2.Config{
 			RedirectURL:  cfg.Oauth.Google.RedirectURL,
 			ClientID:     cfg.Oauth.Google.ClientID,
