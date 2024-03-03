@@ -2,6 +2,7 @@ package postgres
 
 import (
 	"context"
+
 	"github.com/google/uuid"
 	"oss-backend/internal/models"
 )
@@ -11,6 +12,7 @@ func (p *Postgres) ListGroups(ctx context.Context) ([]*models.Group, error) {
 
 	err := p.db.NewSelect().
 		Model(&groups).
+		Relation(RelationFaculty).
 		Scan(ctx)
 	if err != nil {
 		return nil, p.err(err)

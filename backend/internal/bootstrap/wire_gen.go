@@ -40,8 +40,8 @@ func Up() (*Dependencies, error) {
 	if err != nil {
 		return nil, err
 	}
-	httpServer := httpserver.New(configConfig, service, userService, mediaService, facultyService, groupService, notifierService)
 	activitiesService := activities.New(postgresPostgres)
+	httpServer := httpserver.New(configConfig, service, userService, mediaService, facultyService, groupService, notifierService, activitiesService)
 	dependencies := NewDependencies(configConfig, httpServer, service, userService, postgresPostgres, notifierService, activitiesService)
 	return dependencies, nil
 }

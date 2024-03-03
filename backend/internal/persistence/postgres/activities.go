@@ -7,6 +7,19 @@ import (
 	"oss-backend/internal/models"
 )
 
+func (p *Postgres) GetActivityByID(ctx context.Context, id uuid.UUID) (*models.Activity, error) {
+	var activity models.Activity
+
+	if err := p.db.NewSelect().
+		Model(&activity).
+		Where("id = ?", id).
+		Scan(ctx); err != nil {
+		return nil, p.err(err)
+	}
+
+	return &activity, nil
+}
+
 func (p *Postgres) ListActivitiesByStudent(ctx context.Context, id uuid.UUID) ([]models.Activity, error) {
 	var activities []models.Activity
 

@@ -59,6 +59,7 @@ type Notification interface {
 }
 
 type Activity interface {
+	GetActivityByID(ctx context.Context, id uuid.UUID) (*models.Activity, error)
 	ListActivitiesByStudent(ctx context.Context, id uuid.UUID) ([]models.Activity, error)
 	CreateActivity(ctx context.Context, activity *models.Activity) error
 	UpdateActivity(ctx context.Context, activity *models.Activity) error
