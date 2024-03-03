@@ -2,7 +2,11 @@ import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
 import { enqueueSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
 import apiClient from "./apiClient";
-import { TEACHERS_URL, TEACHERS_KEY } from "../constants/teacher";
+import {
+  TEACHERS_URL,
+  INVITE_TEACHER_URL,
+  TEACHERS_KEY,
+} from "../constants/teacher";
 
 async function getTeachers() {
   const res = await apiClient.get(TEACHERS_URL);
@@ -10,7 +14,7 @@ async function getTeachers() {
 }
 
 async function inviteTeacher(teacher) {
-  const res = await apiClient.post(TEACHERS_URL, teacher);
+  const res = await apiClient.post(INVITE_TEACHER_URL, teacher);
   return res.data;
 }
 

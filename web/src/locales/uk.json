@@ -1,5 +1,12 @@
 {
   "templates": {
+    "entry": {
+      "title": "Lorem - твоя зручна платформа для університетського навчання.",
+      "subtitle": "Розклад, предмети, оцінки та рейтинг - в одному місці!",
+      "text": {
+        "waiting": "Зачекайте, будь ласка..."
+      }
+    },
     "emailTemplates": {
       "button": {
         "sendEmail": "Написати",
@@ -16,9 +23,19 @@
       "button": {
         "back": "Назад"
       }
+    },
+    "groupAnalyticsTemplate": {
+      "months": {
+        "february": "Лютий",
+        "march": "Березень",
+        "april": "Квітень"
+      }
     }
   },
   "molecules": {
+    "googleLoginButton": {
+      "continueWithGoogle": "Продовжити з Google"
+    },
     "empty": {
       "text": {
         "noData": "Даних немає"
@@ -33,9 +50,35 @@
       "button": {
         "use": "Використати"
       }
+    },
+    "userMenu": {
+      "menu": {
+        "logout": "Вийти"
+      }
+    },
+    "group": {
+      "text": {
+        "course": "курс"
+      }
     }
   },
   "organisms": {
+    "groupTabs": {
+      "analytics": "Аналітика"
+    },
+    "filterStudents": {
+      "filter": {
+        "groupId": {
+          "label": "Група"
+        },
+        "name": {
+          "placeholder": "Пошук"
+        }
+      },
+      "text": {
+        "filter": "Фільтри"
+      }
+    },
     "adminTabs": {
       "faculties": "Факультети",
       "groups": "Групи",
@@ -46,6 +89,9 @@
       "form": {
         "button": {
           "submit": "Додати викладача"
+        },
+        "email": {
+          "label": "Електронна пошта"
         }
       }
     },
@@ -87,6 +133,35 @@
           "submit": "Додати факультет"
         }
       }
+    },
+    "createGroupForm": {
+      "form": {
+        "facultyId": {
+          "label": "Факультет"
+        },
+        "name": {
+          "label": "Назва"
+        },
+        "button": {
+          "submit": "Додати групу"
+        },
+        "yearStart": {
+          "label": "Рік початку"
+        }
+      }
+    },
+    "inviteStudentForm": {
+      "form": {
+        "groupId": {
+          "label": "Група"
+        },
+        "email": {
+          "label": "Електронна пошта"
+        },
+        "button": {
+          "submit": "Додати студента"
+        }
+      }
     }
   },
   "snackbars": {
@@ -100,6 +175,33 @@
     },
     "deleteFaculty": {
       "success": "Факультет успішно видалений!",
+      "error": "Щось пішло не так!"
+    },
+    "login": {
+      "error": "Щось пішло не так!"
+    },
+    "createGroup": {
+      "success": "Група успішно створена!",
+      "error": "Щось пішло не так!"
+    },
+    "sendEmail": {
+      "success": "Повідомлення успішно відправлено!",
+      "error": "Щось пішло не так!"
+    },
+    "createEmailTemplate": {
+      "success": "Шаблон успішно створений!",
+      "error": "Щось пішло не так!"
+    },
+    "updateEmailTemplate": {
+      "success": "Шаблон успішно оновлений!",
+      "error": "Щось пішло не так!"
+    },
+    "inviteStudent": {
+      "success": "Запрос студенту успішно надісланий!",
+      "error": "Щось пішло не так!"
+    },
+    "inviteTeacher": {
+      "success": "Запрос викладачу успішно надісланий",
       "error": "Щось пішло не так!"
     }
   }

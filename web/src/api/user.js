@@ -7,9 +7,10 @@ async function getUser() {
   return res.data;
 }
 
-export function useGetUser() {
+export function useGetUser({ enabled } = { enabled: true }) {
   return useQuery({
     queryKey: [USER_KEY],
     queryFn: getUser,
+    enabled,
   });
 }

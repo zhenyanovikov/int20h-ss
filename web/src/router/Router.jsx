@@ -12,6 +12,7 @@ import CreateEmailTemplateTemplate from "../components/templates/CreateEmailTemp
 import SendEmailPage from "../components/pages/SendEmailPage/SendEmailPage";
 import { ROUTE } from "../constants/router";
 import PrivateRoute from "./PrivateRoute";
+import GroupAnalyticsTemplate from "../components/templates/GroupAnalyticsTemplate/GroupAnalyticsTemplate";
 
 function Router() {
   return (
@@ -33,6 +34,14 @@ function Router() {
               element={
                 <PrivateRoute>
                   <GroupsPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={ROUTE.GROUP_ANALYITCS}
+              element={
+                <PrivateRoute>
+                  <GroupAnalyticsTemplate />
                 </PrivateRoute>
               }
             />

@@ -9,7 +9,6 @@ function TeachersPage() {
     <TeachersTemplate
       teachersData={teachersData}
       isGetTeachersLoading={isGetTeachersLoading}
-      s
     />
   );
 }
