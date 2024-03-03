@@ -1,3 +1,3 @@
-export const FACULTIES_KEY = "/adminfaculties";
-export const FACULTIES_URL = "/admin/faculties";
-export const FACULTY_URL = "/admin/faculties/:id";
+export const FACULTIES_KEY = "faculties";
+export const FACULTIES_URL = "/faculty";
+export const FACULTY_URL = "/faculty/:id";

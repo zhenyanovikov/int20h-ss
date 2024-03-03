@@ -45,6 +45,12 @@ func (s *HTTPServer) newRouter(_ config.Config) *mux.Router {
 	admin.HandleFunc("/group", s.updateGroup).Methods(http.MethodPut, http.MethodOptions)
 	admin.HandleFunc("/group/{group_id}", s.deleteGroup).Methods(http.MethodDelete, http.MethodOptions)
 
+	authorized.HandleFunc("/notification/send", s.sendNotification).Methods(http.MethodPost, http.MethodOptions)
+	authorized.HandleFunc("/notification/email/template", s.getNotificationTemplates).Methods(http.MethodGet, http.MethodOptions)
+	authorized.HandleFunc("/notification/email/template", s.createNotificationTemplate).Methods(http.MethodPost, http.MethodOptions)
+	authorized.HandleFunc("/notification/email/template/{template_id}", s.updateNotificationTemplate).Methods(http.MethodPut, http.MethodOptions)
+	authorized.HandleFunc("/notification/email/template/{template_id}", s.deleteNotificationTemplates).Methods(http.MethodDelete, http.MethodOptions)
+
 	authorized.HandleFunc("/media/upload", s.uploadMedia).Methods(http.MethodPost, http.MethodOptions)
 
 	authorized.HandleFunc("/subject", s.listSubjects).Methods(http.MethodGet, http.MethodOptions)
@@ -58,6 +64,8 @@ func (s *HTTPServer) newRouter(_ config.Config) *mux.Router {
 	admin.HandleFunc("/faculty", s.createFaculty).Methods(http.MethodPost, http.MethodOptions)
 	admin.HandleFunc("/faculty", s.updateFaculty).Methods(http.MethodPut, http.MethodOptions)
 	admin.HandleFunc("/faculty/{faculty_id}", s.deleteFaculty).Methods(http.MethodDelete, http.MethodOptions)
+
+	//authorized.HandleFunc("/activities/student/{student_id}", s.createActivity).Methods(http.MethodPost, http.MethodOptions)
 
 	return router
 }

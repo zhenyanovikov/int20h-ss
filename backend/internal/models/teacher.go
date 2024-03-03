@@ -11,7 +11,7 @@ type Teacher struct {
 	UserID uuid.UUID `json:"-"`
 	User   *User     `json:"user" bun:"rel:belongs-to"`
 
-	CreatedAt time.Time `json:"created_at" bun:",nullzero"`
+	CreatedAt time.Time `json:"createdAt" bun:",nullzero"`
 }
 
 type InviteTeacherDTO struct {

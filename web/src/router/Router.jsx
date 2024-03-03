@@ -7,6 +7,9 @@ import FacultiesPage from "../components/pages/FacultiesPage/FacultiesPage";
 import GroupsPage from "../components/pages/GroupsPage/GroupsPage";
 import TeachersPage from "../components/pages/TeachersPage/TeachersPage";
 import StudentsPage from "../components/pages/StudentsPage/StudentsPage";
+import EmailTemplatesPage from "../components/pages/EmailTemplatesPage/EmailTemplatesPage";
+import CreateEmailTemplateTemplate from "../components/templates/CreateEmailTemplateTemplate/CreateEmailTemplateTemplate";
+import SendEmailPage from "../components/pages/SendEmailPage/SendEmailPage";
 import { ROUTE } from "../constants/router";
 import PrivateRoute from "./PrivateRoute";
 
@@ -46,6 +49,30 @@ function Router() {
               element={
                 <PrivateRoute>
                   <StudentsPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={ROUTE.SEND_EMAIL}
+              element={
+                <PrivateRoute>
+                  <SendEmailPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={ROUTE.EMAIL_TEMPLATES}
+              element={
+                <PrivateRoute>
+                  <EmailTemplatesPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={ROUTE.CREATE_EMAIL_TEMPLATE}
+              element={
+                <PrivateRoute>
+                  <CreateEmailTemplateTemplate />
                 </PrivateRoute>
               }
             />

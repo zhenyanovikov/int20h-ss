@@ -1,9 +1,37 @@
 {
-  "templates": {},
+  "templates": {
+    "emailTemplates": {
+      "button": {
+        "sendEmail": "Написати",
+        "createEmailTemplate": "Створити шаблон"
+      },
+      "title": "Шаблони повідомлень"
+    },
+    "sendEmail": {
+      "button": {
+        "back": "Назад"
+      }
+    },
+    "createEmailTemplate": {
+      "button": {
+        "back": "Назад"
+      }
+    }
+  },
   "molecules": {
     "empty": {
       "text": {
         "noData": "Даних немає"
+      }
+    },
+    "mailingButton": {
+      "button": {
+        "create": "Розсилка"
+      }
+    },
+    "emailTemplate": {
+      "button": {
+        "use": "Використати"
       }
     }
   },
@@ -18,6 +46,45 @@
       "form": {
         "button": {
           "submit": "Додати викладача"
+        }
+      }
+    },
+    "sendEmailForm": {
+      "form": {
+        "subject": {
+          "label": "Заголовок"
+        },
+        "body": {
+          "label": "Текст"
+        },
+        "facultyId": {
+          "label": "Факультет"
+        }
+      },
+      "button": {
+        "send": "Відправити"
+      }
+    },
+    "createEmailTemplateForm": {
+      "button": {
+        "create": "Створити"
+      },
+      "form": {
+        "body": {
+          "label": "Текст"
+        },
+        "subject": {
+          "label": "Заголовок"
+        }
+      }
+    },
+    "createFacultyForm": {
+      "form": {
+        "name": {
+          "label": "Назва"
+        },
+        "button": {
+          "submit": "Додати факультет"
         }
       }
     }

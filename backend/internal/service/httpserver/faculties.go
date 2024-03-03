@@ -1,10 +1,10 @@
 package httpserver
 
 import (
-	"encoding/json"
+	"net/http"
+
 	"github.com/google/uuid"
 	"github.com/gorilla/mux"
-	"net/http"
 	"oss-backend/internal/models"
 )
 
@@ -36,14 +36,13 @@ func (s *HTTPServer) listFaculties(w http.ResponseWriter, r *http.Request) {
 
 func (s *HTTPServer) createFaculty(w http.ResponseWriter, r *http.Request) {
 	var faculty models.Faculty
-	err := json.NewDecoder(r.Body).Decode(&faculty)
-	if err != nil {
+
+	if err := s.decodeJSON(r, &faculty); err != nil {
 		s.respondError(w, http.StatusBadRequest, err)
 		return
 	}
 
-	err = s.facultySrv.CreateFaculty(&faculty)
-	if err != nil {
+	if err := s.facultySrv.CreateFaculty(&faculty); err != nil {
 		s.respondError(w, http.StatusInternalServerError, err)
 		return
 	}
@@ -53,14 +52,13 @@ func (s *HTTPServer) createFaculty(w http.ResponseWriter, r *http.Request) {
 
 func (s *HTTPServer) updateFaculty(w http.ResponseWriter, r *http.Request) {
 	var faculty models.Faculty
-	err := json.NewDecoder(r.Body).Decode(&faculty)
-	if err != nil {
+
+	if err := s.decodeJSON(r, &faculty); err != nil {
 		s.respondError(w, http.StatusBadRequest, err)
 		return
 	}
 
-	err = s.facultySrv.UpdateFaculty(&faculty)
-	if err != nil {
+	if err := s.facultySrv.UpdateFaculty(&faculty); err != nil {
 		s.respondError(w, http.StatusInternalServerError, err)
 		return
 	}

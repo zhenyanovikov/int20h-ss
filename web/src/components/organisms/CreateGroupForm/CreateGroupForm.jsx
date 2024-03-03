@@ -40,6 +40,7 @@ function CreateGroupForm() {
           <Select
             labelId="facultyId"
             id="facultyId"
+            name="facultyId"
             value={formik.values.facultyId}
             label={t("organisms.createGroupForm.form.facultyId.label")}
             onChange={formik.handleChange}

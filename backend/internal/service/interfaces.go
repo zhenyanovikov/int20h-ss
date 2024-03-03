@@ -52,5 +52,10 @@ type Media interface {
 }
 
 type Notifier interface {
-	SendEmail(ctx context.Context, recipient *models.User, subject, text string) error
+	SendNotification(ctx context.Context, dto *models.SendNotificationDTO) error
+
+	GetTemplates(ctx context.Context) ([]models.NotificationTemplate, error)
+	CreateTemplate(ctx context.Context, template *models.NotificationTemplate) error
+	UpdateTemplate(ctx context.Context, template *models.NotificationTemplate) error
+	DeleteTemplate(ctx context.Context, templateID uuid.UUID) error
 }

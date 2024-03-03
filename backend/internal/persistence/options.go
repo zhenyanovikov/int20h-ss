@@ -3,6 +3,7 @@ package persistence
 import (
 	"strings"
 
+	"github.com/google/uuid"
 	"github.com/uptrace/bun"
 )
 
@@ -19,5 +20,11 @@ func Like(fieldName string, title string) QueryBuilder {
 func Exact(fieldName string, data any) QueryBuilder {
 	return func(query bun.QueryBuilder) bun.QueryBuilder {
 		return query.Where(fieldName+" = ?", data)
+	}
+}
+
+func WithIDIn(ids []uuid.UUID) QueryBuilder {
+	return func(query bun.QueryBuilder) bun.QueryBuilder {
+		return query.Where("student.id IN (?)", bun.In(ids))
 	}
 }

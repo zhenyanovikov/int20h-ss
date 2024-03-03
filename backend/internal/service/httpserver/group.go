@@ -1,11 +1,11 @@
 package httpserver
 
 import (
-	"encoding/json"
-	"github.com/google/uuid"
-	"github.com/gorilla/mux"
 	"log/slog"
 	"net/http"
+
+	"github.com/google/uuid"
+	"github.com/gorilla/mux"
 	"oss-backend/internal/models"
 )
 
@@ -43,8 +43,8 @@ func (s *HTTPServer) getGroupsByFacultyID(w http.ResponseWriter, r *http.Request
 
 func (s *HTTPServer) updateGroup(w http.ResponseWriter, r *http.Request) {
 	var group models.Group
-	err := json.NewDecoder(r.Body).Decode(&group)
-	if err != nil {
+
+	if err := s.decodeJSON(r, &group); err != nil {
 		s.respondError(w, http.StatusBadRequest, err)
 		return
 	}
@@ -57,8 +57,8 @@ func (s *HTTPServer) updateGroup(w http.ResponseWriter, r *http.Request) {
 
 func (s *HTTPServer) createGroup(w http.ResponseWriter, r *http.Request) {
 	var group models.Group
-	err := json.NewDecoder(r.Body).Decode(&group)
-	if err != nil {
+
+	if err := s.decodeJSON(r, &group); err != nil {
 		s.respondError(w, http.StatusBadRequest, err)
 		return
 	}

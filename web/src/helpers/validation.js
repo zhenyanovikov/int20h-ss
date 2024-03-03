@@ -27,3 +27,30 @@ export function getInviteTeacherValidationSchema() {
       .required("organisms.inviteTeacherForm.form.email.requiredHelperText"),
   });
 }
+
+export function getSendEmailValidationSchema() {
+  return yup.object({
+    subject: yup
+      .string()
+      .required("organisms.sendEmailForm.form.subject.requiredHelperText"),
+    facultyId: yup.string().notRequired(),
+    body: yup
+      .string()
+      .required("organisms.sendEmailForm.form.body.requiredHelperText"),
+  });
+}
+
+export function getCreateEmailTemplateValidationSchema() {
+  return yup.object({
+    subject: yup
+      .string()
+      .required(
+        "organisms.createEmailTemplateForm.form.subject.requiredHelperText"
+      ),
+    body: yup
+      .string()
+      .required(
+        "organisms.createEmailTemplateForm.form.body.requiredHelperText"
+      ),
+  });
+}

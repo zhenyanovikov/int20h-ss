@@ -1,11 +1,10 @@
 import { Navigate, Outlet } from "react-router-dom";
-// import useIsLoggedIn from "../../../hooks/useIsLoggedIn";
+import useIsAuthenticated from "../../../hooks/useIsAuthenticated";
 
 function ProtectedTemplate() {
-  // const isLoggedIn = useIsLoggedIn();
-  const isLoggedIn = true;
+  const isAuthenticated = useIsAuthenticated();
 
-  if (!isLoggedIn) {
+  if (!isAuthenticated) {
     return <Navigate to="/" />;
   }
 

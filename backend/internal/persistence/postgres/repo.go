@@ -21,3 +21,7 @@ func (p *Postgres) Group() persistence.Group {
 func (p *Postgres) Subject() persistence.Subject {
 	return p
 }
+
+func (p *Postgres) Notification() persistence.Notification {
+	return p
+}
