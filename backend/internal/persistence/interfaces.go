@@ -15,6 +15,7 @@ type Repo interface {
 	Subject() Subject
 	Notification() Notification
 	Activity() Activity
+	Assignment() Assignment
 }
 
 type Auth interface {
@@ -72,4 +73,13 @@ type Activity interface {
 	CreateActivity(ctx context.Context, activity *models.Activity) error
 	UpdateActivity(ctx context.Context, activity *models.Activity) error
 	DeleteActivity(ctx context.Context, activityID uuid.UUID) error
+}
+
+type Assignment interface {
+	GetAssignmentByID(ctx context.Context, assignmentID uuid.UUID) (*models.Assignment, error)
+	// ListAssignmentsByStudent(ctx context.Context, id uuid.UUID) ([]models.Assignment, error)
+	ListAssignmentsBySubject(ctx context.Context, subjectID uuid.UUID) ([]models.Assignment, error)
+	CreateAssignment(ctx context.Context, assignment *models.Assignment) error
+	UpdateAssignment(ctx context.Context, assignment *models.Assignment) error
+	DeleteAssignment(ctx context.Context, assignmentID uuid.UUID) error
 }

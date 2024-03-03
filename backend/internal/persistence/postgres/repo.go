@@ -29,3 +29,7 @@ func (p *Postgres) Notification() persistence.Notification {
 func (p *Postgres) Activity() persistence.Activity {
 	return p
 }
+
+func (p *Postgres) Assignment() persistence.Assignment {
+	return p
+}

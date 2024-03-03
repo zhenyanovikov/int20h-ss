@@ -54,7 +54,7 @@ func (s *HTTPServer) newRouter(_ config.Config) *mux.Router {
 	authorized.HandleFunc("/media/upload", s.uploadMedia).Methods(http.MethodPost, http.MethodOptions)
 
 	authorized.HandleFunc("/subject", s.listSubjects).Methods(http.MethodGet, http.MethodOptions)
-	admin.HandleFunc("/subject", s.createSubject).Methods(http.MethodPost, http.MethodOptions)
+	authorized.HandleFunc("/subject", s.createSubject).Methods(http.MethodPost, http.MethodOptions)
 	admin.HandleFunc("/subject", s.updateSubject).Methods(http.MethodPut, http.MethodOptions)
 	admin.HandleFunc("/subject/{subject_id}", s.deleteSubject).Methods(http.MethodDelete, http.MethodOptions)
 
@@ -69,6 +69,11 @@ func (s *HTTPServer) newRouter(_ config.Config) *mux.Router {
 	authorized.HandleFunc("/activity/student/{student_id}", s.getActivitiesByStudentID).Methods(http.MethodGet, http.MethodOptions)
 	authorized.HandleFunc("/activity/{activity_id}", s.updateActivity).Methods(http.MethodPut, http.MethodOptions)
 	authorized.HandleFunc("/activity/{activity_id}", s.deleteActivity).Methods(http.MethodDelete, http.MethodOptions)
+
+	authorized.HandleFunc("/assignment/subject/{subject_id}", s.createAssignment).Methods(http.MethodPost, http.MethodOptions)
+	authorized.HandleFunc("/assignment/subject/{subject_id}", s.getAssignmentBySubjectID).Methods(http.MethodGet, http.MethodOptions)
+	authorized.HandleFunc("/assignment/{assignment_id}", s.updateAssignment).Methods(http.MethodPut, http.MethodOptions)
+	authorized.HandleFunc("/assignment/{assignment_id}", s.deleteAssignment).Methods(http.MethodDelete, http.MethodOptions)
 
 	return router
 }

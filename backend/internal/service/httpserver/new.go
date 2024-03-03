@@ -13,31 +13,33 @@ type HTTPServer struct {
 	router         *mux.Router
 	googleOAuthCfg *oauth2.Config
 
-	authSrv     service.Auth
-	userSrv     service.User
-	subjectSrv  service.Subject
-	groupSrv    service.Group
-	facultySrv  service.Faculty
-	mediaSrv    service.Media
-	notifierSrv service.Notifier
-	activitySrv service.Activity
+	authSrv       service.Auth
+	userSrv       service.User
+	subjectSrv    service.Subject
+	groupSrv      service.Group
+	facultySrv    service.Faculty
+	mediaSrv      service.Media
+	notifierSrv   service.Notifier
+	activitySrv   service.Activity
+	assignmentSrv service.Assignment
 }
 
 func New(cfg config.Config, authSrv service.Auth,
 	userSrv service.User, mediaSrv service.Media,
 	facultySrv service.Faculty, groupSrv service.Group,
 	notifierSrv service.Notifier, subjectSrv service.Subject,
-	activitySrv service.Activity) *HTTPServer {
+	activitySrv service.Activity, assignmentSrv service.Assignment) *HTTPServer {
 	server := &HTTPServer{
-		cfg:         cfg,
-		authSrv:     authSrv,
-		userSrv:     userSrv,
-		mediaSrv:    mediaSrv,
-		facultySrv:  facultySrv,
-		groupSrv:    groupSrv,
-		notifierSrv: notifierSrv,
-		activitySrv: activitySrv,
-		subjectSrv:  subjectSrv,
+		cfg:           cfg,
+		authSrv:       authSrv,
+		userSrv:       userSrv,
+		mediaSrv:      mediaSrv,
+		facultySrv:    facultySrv,
+		groupSrv:      groupSrv,
+		notifierSrv:   notifierSrv,
+		activitySrv:   activitySrv,
+		subjectSrv:    subjectSrv,
+		assignmentSrv: assignmentSrv,
 		googleOAuthCfg: &oauth2.Config{
 			RedirectURL:  cfg.Oauth.Google.RedirectURL,
 			ClientID:     cfg.Oauth.Google.ClientID,
