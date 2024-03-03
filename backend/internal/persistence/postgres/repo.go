@@ -22,6 +22,10 @@ func (p *Postgres) Subject() persistence.Subject {
 	return p
 }
 
+func (p *Postgres) Event() persistence.Event {
+	return p
+}
+
 func (p *Postgres) Notification() persistence.Notification {
 	return p
 }
