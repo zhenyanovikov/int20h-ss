@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log/slog"
+	"strings"
 
 	"github.com/aws/aws-sdk-go/service/ses"
 	"github.com/google/uuid"
@@ -46,6 +47,10 @@ func (s Service) SendNotification(ctx context.Context, dto *models.SendNotificat
 	}
 
 	for _, student := range receiverStudents {
+		if strings.HasSuffix(student.User.Email, "example.com") {
+			continue
+		}
+
 		if err := s.sendEmail(ctx, student.User, dto.Subject, dto.Body); err != nil {
 			slog.Error("failed to send email, %v", err)
 		}
