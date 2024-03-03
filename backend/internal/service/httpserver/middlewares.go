@@ -12,9 +12,6 @@ import (
 
 func (s *HTTPServer) authMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		next.ServeHTTP(w, r)
-		return
-
 		authHeader := r.Header.Get("Authorization")
 		t := strings.Split(authHeader, " ")
 
