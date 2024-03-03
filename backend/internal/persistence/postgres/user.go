@@ -8,7 +8,7 @@ import (
 	"oss-backend/internal/persistence"
 )
 
-func (p *Postgres) GetByID(ctx context.Context, id uuid.UUID) (*models.User, error) {
+func (p *Postgres) GetUserByID(ctx context.Context, id uuid.UUID) (*models.User, error) {
 	var user models.User
 
 	err := p.db.NewSelect().
@@ -22,7 +22,7 @@ func (p *Postgres) GetByID(ctx context.Context, id uuid.UUID) (*models.User, err
 	return &user, nil
 }
 
-func (p *Postgres) GetByEmail(ctx context.Context, email string) (*models.User, error) {
+func (p *Postgres) GetUserByEmail(ctx context.Context, email string) (*models.User, error) {
 	var user models.User
 
 	err := p.db.NewSelect().
@@ -135,7 +135,7 @@ func (p *Postgres) CreateStudent(ctx context.Context, student *models.Student) e
 	return nil
 }
 
-func (p *Postgres) Update(ctx context.Context, user *models.User) error {
+func (p *Postgres) UpdateUser(ctx context.Context, user *models.User) error {
 	_, err := p.db.NewUpdate().
 		Model(user).
 		WherePK().

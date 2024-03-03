@@ -7,6 +7,7 @@ type Group struct {
 	Name      string    `json:"name"`
 	YearStart int       `json:"yearStart"`
 	FacultyID uuid.UUID `json:"facultyID" bun:",nullzero"`
+	Faculty   *Faculty  `json:"faculty" bun:"rel:belongs-to"`
 
 	YearOfStudy int `json:"yearOfStudy" bun:",scanonly"`
 }
