@@ -13,6 +13,7 @@ type Repo interface {
 	Faculty() Faculty
 	Group() Group
 	Subject() Subject
+	Event() Event
 	Notification() Notification
 	Activity() Activity
 	Assignment() Assignment
@@ -58,6 +59,13 @@ type Subject interface {
 	CreateSubject(ctx context.Context, subject *models.Subject) error
 	UpdateSubject(ctx context.Context, subject *models.Subject) error
 	DeleteSubject(ctx context.Context, subjectID uuid.UUID) error
+}
+
+type Event interface {
+	ListEvents(ctx context.Context, opts ...QueryBuilder) ([]*models.Event, error)
+	CreateEvent(ctx context.Context, event *models.Event) error
+	UpdateEvent(ctx context.Context, event *models.Event) error
+	DeleteEvent(ctx context.Context, eventID uuid.UUID) error
 }
 
 type Notification interface {

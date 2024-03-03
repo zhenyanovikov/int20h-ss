@@ -2,9 +2,8 @@ package service
 
 import (
 	"context"
-	"io"
-
 	"github.com/google/uuid"
+	"io"
 	"oss-backend/internal/models"
 )
 
@@ -45,6 +44,13 @@ type Subject interface {
 	CreateSubject(ctx context.Context, subject *models.Subject) error
 	UpdateSubject(ctx context.Context, subject *models.Subject) error
 	DeleteSubject(ctx context.Context, id uuid.UUID) error
+}
+
+type Event interface {
+	ListEvents(ctx context.Context, filter *models.FilterEventDTO) ([]*models.Event, error)
+	CreateEvent(ctx context.Context, event *models.Event) error
+	UpdateEvent(ctx context.Context, event *models.Event) error
+	DeleteEvent(ctx context.Context, eventID uuid.UUID) error
 }
 
 type Media interface {
