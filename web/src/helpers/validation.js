@@ -35,15 +35,11 @@ export function getInviteStudentValidationSchema() {
   return yup.object({
     groupId: yup
       .string()
-      .required(
-        "organisms.inviteStudentValidation.form.groupId.requiredHelperText"
-      ),
+      .required("organisms.inviteStudentForm.form.groupId.requiredHelperText"),
     email: yup
       .string()
       .email("organisms.inviteStudentValidation.form.email.helperText")
-      .required(
-        "organisms.inviteStudentValidation.form.email.requiredHelperText"
-      ),
+      .required("organisms.inviteStudentForm.form.email.requiredHelperText"),
   });
 }
 
