@@ -53,6 +53,11 @@ func (s *HTTPServer) newRouter(_ config.Config) *mux.Router {
 
 	authorized.HandleFunc("/media/upload", s.uploadMedia).Methods(http.MethodPost, http.MethodOptions)
 
+	authorized.HandleFunc("/subject", s.listSubjects).Methods(http.MethodGet, http.MethodOptions)
+	admin.HandleFunc("/subject", s.createSubject).Methods(http.MethodPost, http.MethodOptions)
+	admin.HandleFunc("/subject", s.updateSubject).Methods(http.MethodPut, http.MethodOptions)
+	admin.HandleFunc("/subject/{subject_id}", s.deleteSubject).Methods(http.MethodDelete, http.MethodOptions)
+
 	admin.HandleFunc("/faculty/{faculty_id}/groups", s.getGroupsByFacultyID).Methods(http.MethodGet, http.MethodOptions)
 	authorized.HandleFunc("/faculty/{faculty_id}", s.getFacultyByID).Methods(http.MethodGet, http.MethodOptions)
 	authorized.HandleFunc("/faculty", s.listFaculties).Methods(http.MethodGet, http.MethodOptions)

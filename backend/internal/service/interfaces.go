@@ -40,6 +40,13 @@ type Faculty interface {
 	DeleteFaculty(id uuid.UUID) error
 }
 
+type Subject interface {
+	ListSubjects(ctx context.Context, subject *models.SubjectFilterDTO) ([]*models.Subject, error)
+	CreateSubject(ctx context.Context, subject *models.Subject) error
+	UpdateSubject(ctx context.Context, subject *models.Subject) error
+	DeleteSubject(ctx context.Context, id uuid.UUID) error
+}
+
 type Media interface {
 	Upload(ctx context.Context, fileReader io.Reader, extension string) (url string, err error)
 }

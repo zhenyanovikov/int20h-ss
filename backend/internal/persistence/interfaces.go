@@ -12,6 +12,7 @@ type Repo interface {
 	User() User
 	Faculty() Faculty
 	Group() Group
+	Subject() Subject
 	Notification() Notification
 }
 
@@ -48,6 +49,13 @@ type Faculty interface {
 	CreateFaculty(ctx context.Context, faculty *models.Faculty) error
 	UpdateFaculty(ctx context.Context, faculty *models.Faculty) error
 	DeleteFaculty(ctx context.Context, facultyID uuid.UUID) error
+}
+
+type Subject interface {
+	ListSubjects(ctx context.Context, opts *models.SubjectFilterDTO) ([]*models.Subject, error)
+	CreateSubject(ctx context.Context, subject *models.Subject) error
+	UpdateSubject(ctx context.Context, subject *models.Subject) error
+	DeleteSubject(ctx context.Context, subjectID uuid.UUID) error
 }
 
 type Notification interface {
