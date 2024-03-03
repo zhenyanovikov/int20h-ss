@@ -6,6 +6,7 @@ import {
   MenuItem,
   TextField,
   Button,
+  Box,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
@@ -22,6 +23,7 @@ function CreateGroupForm() {
   const formik = useFormik({
     initialValues: {
       facultyId: "",
+      yearStart: "",
       name: "",
     },
     validationSchema: getCreateGroupValidationSchema(),
@@ -32,26 +34,36 @@ function CreateGroupForm() {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Stack direction="row" spacing={2}>
-        <FormControl size="small">
-          <InputLabel id="facultyId">
-            {t("organisms.createGroupForm.form.facultyId.label")}
-          </InputLabel>
-          <Select
-            labelId="facultyId"
-            id="facultyId"
-            name="facultyId"
-            value={formik.values.facultyId}
-            label={t("organisms.createGroupForm.form.facultyId.label")}
-            onChange={formik.handleChange}
-          >
-            {faculties.map((faculty) => (
-              <MenuItem key={faculty.id} value={faculty.id}>
-                {faculty.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+      <Stack
+        sx={{
+          flexDirection: {
+            sx: "column",
+            md: "row",
+          },
+          gap: 2,
+        }}
+      >
+        <Box sx={{ width: { sx: "100%", md: "184px" } }}>
+          <FormControl size="small" fullWidth>
+            <InputLabel id="facultyId">
+              {t("organisms.createGroupForm.form.facultyId.label")}
+            </InputLabel>
+            <Select
+              labelId="facultyId"
+              id="facultyId"
+              name="facultyId"
+              value={formik.values.facultyId}
+              label={t("organisms.createGroupForm.form.facultyId.label")}
+              onChange={formik.handleChange}
+            >
+              {faculties.map((faculty) => (
+                <MenuItem key={faculty.id} value={faculty.id}>
+                  {faculty.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
         <TextField
           id="name"
           name="name"
@@ -62,6 +74,18 @@ function CreateGroupForm() {
           onBlur={formik.handleBlur}
           error={formik.touched.name && !!formik.errors.name}
           helperText={formik.touched.name && t(formik.errors.name)}
+        />
+        <TextField
+          id="yearStart"
+          name="yearStart"
+          size="small"
+          type="number"
+          label={t("organisms.createGroupForm.form.yearStart.label")}
+          value={formik.values.yearStart}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.yearStart && !!formik.errors.yearStart}
+          helperText={formik.touched.yearStart && t(formik.errors.yearStart)}
         />
         <Stack>
           <Button

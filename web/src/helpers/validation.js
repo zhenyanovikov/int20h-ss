@@ -16,6 +16,9 @@ export function getCreateGroupValidationSchema() {
     name: yup
       .string()
       .required("organisms.createGroupForm.form.name.requiredHelperText"),
+    yearStart: yup
+      .number()
+      .required("organisms.createGroupForm.form.yearStart.requiredHelperText"),
   });
 }
 
@@ -25,6 +28,22 @@ export function getInviteTeacherValidationSchema() {
       .string()
       .email("organisms.inviteTeacherForm.form.email.helperText")
       .required("organisms.inviteTeacherForm.form.email.requiredHelperText"),
+  });
+}
+
+export function getInviteStudentValidationSchema() {
+  return yup.object({
+    groupId: yup
+      .string()
+      .required(
+        "organisms.inviteStudentValidation.form.groupId.requiredHelperText"
+      ),
+    email: yup
+      .string()
+      .email("organisms.inviteStudentValidation.form.email.helperText")
+      .required(
+        "organisms.inviteStudentValidation.form.email.requiredHelperText"
+      ),
   });
 }
 

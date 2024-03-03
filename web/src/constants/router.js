@@ -1,6 +1,7 @@
 export const ROUTE = {
   FACULTIES: "/faculties",
   GROUPS: "/groups",
+  GROUP_ANALYITCS: "/groups/:id/analytics",
   TEACHERS: "/teachers",
   STUDENTS: "/students",
   SEND_EMAIL: "/mailing/send-email",

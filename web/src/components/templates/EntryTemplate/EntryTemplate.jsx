@@ -1,18 +1,25 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { Stack, Box, Container, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Navigate } from "react-router-dom";
+import { useGetUser } from "../../../api/user";
 import { ROUTE } from "../../../constants/router";
 import LoremBackground from "../../../assets/backgrounds/lorem.png";
-import GoogleLoginButton from "../../molecules/GoogleLoginButton/GoogleLoginButton";
 import useIsAuthenticated from "../../../hooks/useIsAuthenticated";
+import GoogleLoginButton from "../../molecules/GoogleLoginButton/GoogleLoginButton";
+import { ROLE } from "../../../constants/user";
 
 function EntryTemplate() {
   const { t } = useTranslation();
 
-  const isAuthenticated = useIsAuthenticated();
+  const isAuthicated = useIsAuthenticated();
+  const { data: userData } = useGetUser({ enabled: isAuthicated });
 
-  if (isAuthenticated) {
-    return <Navigate to={ROUTE.AUCTIONS} />;
+  if (userData) {
+    if (userData.role === ROLE.ADMIN) {
+      return <Navigate to={ROUTE.FACULTIES} />;
+    }
+
+    return <Navigate to={ROUTE.FACULTIES} />;
   }
 
   return (
@@ -50,8 +57,8 @@ function EntryTemplate() {
             md: "unset",
           },
           height: {
-            xs: 300,
-            md: 500,
+            xs: 200,
+            md: 400,
           },
           position: "absolute",
           right: 0,
@@ -60,8 +67,8 @@ function EntryTemplate() {
             md: 88,
           },
           width: {
-            xs: 200,
-            md: 400,
+            xs: 150,
+            md: 300,
           },
           zIndex: -1,
         }}

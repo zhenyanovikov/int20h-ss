@@ -19,7 +19,15 @@ function InviteTeacherForm() {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Stack direction="row" spacing={2}>
+      <Stack
+        sx={{
+          flexDirection: {
+            sx: "column",
+            md: "row",
+          },
+          gap: 2,
+        }}
+      >
         <TextField
           id="email"
           name="email"
