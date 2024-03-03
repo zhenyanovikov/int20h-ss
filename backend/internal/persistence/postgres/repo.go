@@ -17,3 +17,7 @@ func (p *Postgres) Faculty() persistence.Faculty {
 func (p *Postgres) Group() persistence.Group {
 	return p
 }
+
+func (p *Postgres) Subject() persistence.Subject {
+	return p
+}

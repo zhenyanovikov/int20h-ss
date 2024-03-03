@@ -15,6 +15,7 @@ import (
 	"oss-backend/internal/service/faculty"
 	"oss-backend/internal/service/group"
 	"oss-backend/internal/service/httpserver"
+	"oss-backend/internal/service/subject"
 	"oss-backend/internal/service/user"
 )
 
@@ -26,6 +27,7 @@ func Up() (*Dependencies, error) {
 		wire.Bind(new(service.Faculty), new(*faculty.Service)),
 		wire.Bind(new(service.Notifier), new(*mail.Service)),
 		wire.Bind(new(service.Group), new(*group.Service)),
+		wire.Bind(new(service.Subject), new(*subject.Service)),
 
 		wire.Bind(new(persistence.Repo), new(*postgres.Postgres)),
 		//wire.Bind(new(persistence.Cache), new(*redis.Redis)),
@@ -41,6 +43,7 @@ func Up() (*Dependencies, error) {
 		mail.New,
 		media.New,
 		group.New,
+		subject.New,
 		//redis.New,
 		NewDependencies,
 	)

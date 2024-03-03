@@ -15,7 +15,7 @@ func (s *HTTPServer) newRouter(_ config.Config) *mux.Router {
 		router     = mux.NewRouter()
 		api        = router.PathPrefix("/api/v1").Subrouter()
 		authorized = api.PathPrefix("/").Subrouter()
-		admin      = authorized.PathPrefix("/admin").Subrouter()
+		admin      = authorized.PathPrefix("/").Subrouter()
 	)
 
 	goth.UseProviders(
@@ -46,6 +46,11 @@ func (s *HTTPServer) newRouter(_ config.Config) *mux.Router {
 	admin.HandleFunc("/group/{group_id}", s.deleteGroup).Methods(http.MethodDelete, http.MethodOptions)
 
 	authorized.HandleFunc("/media/upload", s.uploadMedia).Methods(http.MethodPost, http.MethodOptions)
+
+	authorized.HandleFunc("/subject", s.listSubjects).Methods(http.MethodGet, http.MethodOptions)
+	admin.HandleFunc("/subject", s.createSubject).Methods(http.MethodPost, http.MethodOptions)
+	admin.HandleFunc("/subject", s.updateSubject).Methods(http.MethodPut, http.MethodOptions)
+	admin.HandleFunc("/subject/{subject_id}", s.deleteSubject).Methods(http.MethodDelete, http.MethodOptions)
 
 	admin.HandleFunc("/faculty/{faculty_id}/groups", s.getGroupsByFacultyID).Methods(http.MethodGet, http.MethodOptions)
 	authorized.HandleFunc("/faculty/{faculty_id}", s.getFacultyByID).Methods(http.MethodGet, http.MethodOptions)
