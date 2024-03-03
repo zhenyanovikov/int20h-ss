@@ -30,6 +30,32 @@ func (s *HTTPServer) createAssignment(w http.ResponseWriter, r *http.Request) {
 	s.respond(w, http.StatusCreated, assignment)
 }
 
+func (s *HTTPServer) submitAssignment(w http.ResponseWriter, r *http.Request) {
+	var submission models.SubmittedAssigment
+
+	if err := s.decodeJSON(r, &submission); err != nil {
+		s.respondError(w, http.StatusBadRequest, err)
+		return
+	}
+
+	assignmentID, err := uuid.Parse(mux.Vars(r)["assignment_id"])
+	if err != nil {
+		s.respondError(w, http.StatusBadRequest, err)
+		return
+	}
+
+	submission.AssignmentID = assignmentID
+
+	userID := r.Context().Value("user_id").(uuid.UUID)
+
+	if err = s.assignmentSrv.SubmitAssignment(r.Context(), userID, &submission); err != nil {
+		s.respondError(w, http.StatusInternalServerError, err)
+		return
+	}
+
+	s.respond(w, http.StatusCreated, submission)
+}
+
 func (s *HTTPServer) getAssignmentBySubjectID(w http.ResponseWriter, r *http.Request) {
 	subjectID, err := uuid.Parse(mux.Vars(r)["subject_id"])
 	if err != nil {

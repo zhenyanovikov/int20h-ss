@@ -43,6 +43,17 @@ func (p *Postgres) CreateAssignment(ctx context.Context, assignment *models.Assi
 	return nil
 }
 
+func (p *Postgres) CreateSubmittedAssignment(ctx context.Context, submittedAssigment *models.SubmittedAssigment) error {
+	if _, err := p.db.NewInsert().
+		Model(submittedAssigment).
+		Returning("*").
+		Exec(ctx); err != nil {
+		return p.err(err)
+	}
+
+	return nil
+}
+
 func (p *Postgres) UpdateAssignment(ctx context.Context, assignment *models.Assignment) error {
 	if _, err := p.db.NewUpdate().
 		Model(assignment).

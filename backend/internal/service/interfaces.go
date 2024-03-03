@@ -72,5 +72,5 @@ type Assignment interface {
 	CreateAssignment(ctx context.Context, assignment *models.Assignment, subjectID uuid.UUID) error
 	UpdateAssignment(ctx context.Context, assignment *models.Assignment) error
 	DeleteAssignment(ctx context.Context, assignmentID uuid.UUID) error
-	//SubmitAssignment(ctx context.Context, userID uuid.UUID, assignment *models.Assignment) error
+	SubmitAssignment(ctx context.Context, studentID uuid.UUID, assignment *models.SubmittedAssigment) error
 }
