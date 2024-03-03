@@ -13,12 +13,12 @@ const (
 )
 
 type Event struct {
-	ID   uuid.UUID
+	ID   uuid.UUID `json:"id" bun:",pk,type:uuid,default:uuid_generate_v4()"`
 	Type EventType
 	Mark int
 
-	StudentID uuid.UUID
-	SubjectID uuid.UUID
+	StudentID uuid.UUID `json:"studentID" bson:"nullzero"`
+	SubjectID uuid.UUID `json:"subjectID" bson:"nullzero"`
 }
 
 type FilterEventDTO struct {

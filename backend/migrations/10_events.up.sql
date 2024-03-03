@@ -1,6 +1,6 @@
 BEGIN;
 
-CREATE TABLE event
+CREATE TABLE events
 (
     id         uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     type       text NOT NULL,
