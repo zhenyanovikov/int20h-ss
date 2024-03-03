@@ -75,6 +75,8 @@ func (s *HTTPServer) newRouter(_ config.Config) *mux.Router {
 	authorized.HandleFunc("/assignment/{assignment_id}", s.updateAssignment).Methods(http.MethodPut, http.MethodOptions)
 	authorized.HandleFunc("/assignment/{assignment_id}", s.deleteAssignment).Methods(http.MethodDelete, http.MethodOptions)
 
+	authorized.HandleFunc("/assignment/{assignment_id}/submit", s.submitAssignment).Methods(http.MethodPost, http.MethodOptions)
+
 	return router
 }
 

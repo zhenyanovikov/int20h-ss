@@ -77,9 +77,9 @@ type Activity interface {
 
 type Assignment interface {
 	GetAssignmentByID(ctx context.Context, assignmentID uuid.UUID) (*models.Assignment, error)
-	// ListAssignmentsByStudent(ctx context.Context, id uuid.UUID) ([]models.Assignment, error)
 	ListAssignmentsBySubject(ctx context.Context, subjectID uuid.UUID) ([]models.Assignment, error)
 	CreateAssignment(ctx context.Context, assignment *models.Assignment) error
+	CreateSubmittedAssignment(ctx context.Context, submittedAssigment *models.SubmittedAssigment) error
 	UpdateAssignment(ctx context.Context, assignment *models.Assignment) error
 	DeleteAssignment(ctx context.Context, assignmentID uuid.UUID) error
 }

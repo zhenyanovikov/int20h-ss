@@ -19,3 +19,15 @@ type Assignment struct {
 
 	CreatedAt time.Time `json:"createdAt" bun:",nullzero"`
 }
+
+type SubmittedAssigment struct {
+	ID            uuid.UUID `json:"id" bun:",pk,nullzero"`
+	AssignmentID  uuid.UUID `json:"assignmentId"`
+	StudentID     uuid.UUID `json:"studentId"`
+	Text          string    `json:"text"`
+	AttachmentURL string    `json:"attachment"`
+	//EventID	   uuid.UUID `json:"eventId"`
+	//Event        *Event    `json:"event" bun:"rel:belongs-to"`
+	Grade     *int      `json:"grade" bun:",scanonly"`
+	CreatedAt time.Time `json:"createdAt" bun:",nullzero"`
+}

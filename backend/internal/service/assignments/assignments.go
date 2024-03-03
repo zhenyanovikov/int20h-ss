@@ -36,6 +36,19 @@ func (s *Service) CreateAssignment(ctx context.Context, assignment *models.Assig
 	return nil
 }
 
+func (s *Service) SubmitAssignment(ctx context.Context, studentID uuid.UUID, submittedAssigment *models.SubmittedAssigment) error {
+	submittedAssigment.StudentID = studentID
+
+	if err := s.repo.Assignment().CreateSubmittedAssignment(ctx, submittedAssigment); err != nil {
+		return fmt.Errorf("failed to submit assignment: %v", err)
+	}
+
+	// todo create event
+
+	return nil
+
+}
+
 func (s *Service) UpdateAssignment(ctx context.Context, assignment *models.Assignment) error {
 	if err := s.repo.Assignment().UpdateAssignment(ctx, assignment); err != nil {
 		return fmt.Errorf("failed to update assignment: %v", err)

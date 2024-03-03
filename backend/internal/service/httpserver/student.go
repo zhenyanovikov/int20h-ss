@@ -33,6 +33,10 @@ func (s *HTTPServer) getStudents(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if students == nil {
+		students = []models.Student{}
+	}
+
 	if err = s.respond(w, http.StatusOK, students); err != nil {
 		slog.Error("failed to respond: %v", err)
 		return
