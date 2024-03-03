@@ -91,20 +91,26 @@
           "submit": "Додати викладача"
         },
         "email": {
-          "label": "Електронна пошта"
+          "label": "Електронна пошта",
+          "requiredHelperText": "Необхідно ввести електронну пошту"
         }
       }
     },
     "sendEmailForm": {
       "form": {
         "subject": {
-          "label": "Заголовок"
+          "label": "Заголовок",
+          "requiredHelperText": "Необхідно ввести заголовок"
         },
         "body": {
-          "label": "Текст"
+          "label": "Текст",
+          "requiredHelperText": "Необхідно ввести текст"
         },
         "facultyId": {
           "label": "Факультет"
+        },
+        "groupId": {
+          "label": "Група"
         }
       },
       "button": {
@@ -117,17 +123,20 @@
       },
       "form": {
         "body": {
-          "label": "Текст"
+          "label": "Текст",
+          "requiredHelperText": "Необхідно ввести текст"
         },
         "subject": {
-          "label": "Заголовок"
+          "label": "Заголовок",
+          "requiredHelperText": "Необхідно ввести заголовок"
         }
       }
     },
     "createFacultyForm": {
       "form": {
         "name": {
-          "label": "Назва"
+          "label": "Назва",
+          "requiredHelperText": "Необхідно ввести назву"
         },
         "button": {
           "submit": "Додати факультет"
@@ -140,13 +149,15 @@
           "label": "Факультет"
         },
         "name": {
-          "label": "Назва"
+          "label": "Назва",
+          "requiredHelperText": "Необхідно ввести назву"
         },
         "button": {
           "submit": "Додати групу"
         },
         "yearStart": {
-          "label": "Рік початку"
+          "label": "Рік початку",
+          "requiredHelperText": "Необхідно ввести рік початку"
         }
       }
     },
@@ -156,7 +167,8 @@
           "label": "Група"
         },
         "email": {
-          "label": "Електронна пошта"
+          "label": "Електронна пошта",
+          "requiredHelperText": "Необхідно ввести електронну пошту"
         },
         "button": {
           "submit": "Додати студента"

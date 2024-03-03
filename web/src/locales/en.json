@@ -1,1 +1,217 @@
-{}
+{
+  "molecules": {
+    "emailTemplate": {
+      "button": {
+        "use": "Use"
+      }
+    },
+    "empty": {
+      "text": {
+        "noData": "There are no data"
+      }
+    },
+    "googleLoginButton": {
+      "continueWithGoogle": "Continue with Google"
+    },
+    "group": {
+      "text": {
+        "course": "course"
+      }
+    },
+    "mailingButton": {
+      "button": {
+        "create": "Mailing"
+      }
+    },
+    "userMenu": {
+      "menu": {
+        "logout": "Go out"
+      }
+    }
+  },
+  "organisms": {
+    "adminTabs": {
+      "faculties": "Faculties",
+      "groups": "Groups",
+      "students": "Students",
+      "teachers": "Teachers"
+    },
+    "createEmailTemplateForm": {
+      "button": {
+        "create": "Create"
+      },
+      "form": {
+        "body": {
+          "label": "Text",
+          "requiredHelperText": "Text must be entered"
+        },
+        "subject": {
+          "label": "Title",
+          "requiredHelperText": "A title must be entered"
+        }
+      }
+    },
+    "createFacultyForm": {
+      "form": {
+        "button": {
+          "submit": "Add faculty"
+        },
+        "name": {
+          "label": "Name",
+          "requiredHelperText": "You must enter a name"
+        }
+      }
+    },
+    "createGroupForm": {
+      "form": {
+        "button": {
+          "submit": "Add a group"
+        },
+        "facultyId": {
+          "label": "Faculty"
+        },
+        "name": {
+          "label": "Name",
+          "requiredHelperText": "You must enter a name"
+        },
+        "yearStart": {
+          "label": "Year of start",
+          "requiredHelperText": "You must enter the year of start"
+        }
+      }
+    },
+    "filterStudents": {
+      "filter": {
+        "groupId": {
+          "label": "Group"
+        },
+        "name": {
+          "placeholder": "Search"
+        }
+      },
+      "text": {
+        "filter": "Filters"
+      }
+    },
+    "groupTabs": {
+      "analytics": "Analytics"
+    },
+    "inviteStudentForm": {
+      "form": {
+        "button": {
+          "submit": "Add a student"
+        },
+        "email": {
+          "label": "Email",
+          "requiredHelperText": "You must enter an e-mail address"
+        },
+        "groupId": {
+          "label": "Group"
+        }
+      }
+    },
+    "inviteTeacherForm": {
+      "form": {
+        "button": {
+          "submit": "Add a teacher"
+        },
+        "email": {
+          "label": "Email",
+          "requiredHelperText": "You must enter an e-mail address"
+        }
+      }
+    },
+    "sendEmailForm": {
+      "button": {
+        "send": "Send"
+      },
+      "form": {
+        "body": {
+          "label": "Text",
+          "requiredHelperText": "Text must be entered"
+        },
+        "facultyId": {
+          "label": "Faculty"
+        },
+        "subject": {
+          "label": "Title",
+          "requiredHelperText": "A title must be entered"
+        }
+      }
+    }
+  },
+  "snackbars": {
+    "createEmailTemplate": {
+      "error": "Something went wrong!",
+      "success": "Template successfully created!"
+    },
+    "createFaculty": {
+      "error": "Something went wrong!",
+      "success": "The faculty has been successfully created!"
+    },
+    "createGroup": {
+      "error": "Something went wrong!",
+      "success": "Group successfully created!"
+    },
+    "deleteFaculty": {
+      "error": "Something went wrong!",
+      "success": "Faculty successfully deleted!"
+    },
+    "inviteStudent": {
+      "error": "Something went wrong!",
+      "success": "The request to the student has been successfully sent!"
+    },
+    "inviteTeacher": {
+      "error": "Something went wrong!",
+      "success": "The request to the teacher has been successfully sent"
+    },
+    "login": {
+      "error": "Something went wrong!"
+    },
+    "sendEmail": {
+      "error": "Something went wrong!",
+      "success": "Message successfully sent!"
+    },
+    "updateEmailTemplate": {
+      "error": "Something went wrong!",
+      "success": "Template successfully updated!"
+    },
+    "updateFaculty": {
+      "error": "Something went wrong!",
+      "success": "The faculty has been successfully updated!"
+    }
+  },
+  "templates": {
+    "createEmailTemplate": {
+      "button": {
+        "back": "Back"
+      }
+    },
+    "emailTemplates": {
+      "button": {
+        "createEmailTemplate": "Create a template",
+        "sendEmail": "Compose"
+      },
+      "title": "Message templates"
+    },
+    "entry": {
+      "subtitle": "Schedule, subjects, grades and rating - in one place!",
+      "text": {
+        "waiting": "Wait please..."
+      },
+      "title": "Lorem is your convenient platform for university studies."
+    },
+    "groupAnalyticsTemplate": {
+      "months": {
+        "april": "April",
+        "february": "February",
+        "march": "March"
+      }
+    },
+    "sendEmail": {
+      "button": {
+        "back": "Back"
+      }
+    }
+  }
+}
