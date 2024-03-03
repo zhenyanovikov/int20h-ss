@@ -13,6 +13,7 @@ type Repo interface {
 	Faculty() Faculty
 	Group() Group
 	Notification() Notification
+	Activity() Activity
 }
 
 type Auth interface {
@@ -20,8 +21,8 @@ type Auth interface {
 }
 
 type User interface {
-	GetByID(ctx context.Context, id uuid.UUID) (*models.User, error)
-	GetByEmail(ctx context.Context, email string) (*models.User, error)
+	GetUserByID(ctx context.Context, id uuid.UUID) (*models.User, error)
+	GetUserByEmail(ctx context.Context, email string) (*models.User, error)
 	ListTeachers(ctx context.Context) ([]models.Teacher, error)
 	ListStudents(ctx context.Context, opts ...QueryBuilder) ([]models.Student, error)
 	ListStudentsByGroupID(ctx context.Context, groupID uuid.UUID) ([]models.Student, error)
@@ -31,7 +32,7 @@ type User interface {
 	CreateTeacher(ctx context.Context, teacher *models.Teacher) error
 	CreateStudent(ctx context.Context, student *models.Student) error
 
-	Update(ctx context.Context, user *models.User) error
+	UpdateUser(ctx context.Context, user *models.User) error
 }
 
 type Group interface {
@@ -55,4 +56,11 @@ type Notification interface {
 	CreateTemplate(ctx context.Context, template *models.NotificationTemplate) error
 	UpdateTemplate(ctx context.Context, template *models.NotificationTemplate) error
 	DeleteTemplate(ctx context.Context, templateID uuid.UUID) error
+}
+
+type Activity interface {
+	ListActivitiesByStudent(ctx context.Context, id uuid.UUID) ([]models.Activity, error)
+	CreateActivity(ctx context.Context, activity *models.Activity) error
+	UpdateActivity(ctx context.Context, activity *models.Activity) error
+	DeleteActivity(ctx context.Context, activityID uuid.UUID) error
 }

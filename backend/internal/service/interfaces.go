@@ -52,3 +52,10 @@ type Notifier interface {
 	UpdateTemplate(ctx context.Context, template *models.NotificationTemplate) error
 	DeleteTemplate(ctx context.Context, templateID uuid.UUID) error
 }
+
+type Activity interface {
+	ListActivitiesByStudent(ctx context.Context, studentID uuid.UUID) ([]models.Activity, error)
+	CreateActivity(ctx context.Context, activity *models.Activity, studentID uuid.UUID) error
+	UpdateActivity(ctx context.Context, activity *models.Activity, activityID uuid.UUID) error
+	DeleteActivity(ctx context.Context, activityID uuid.UUID) error
+}

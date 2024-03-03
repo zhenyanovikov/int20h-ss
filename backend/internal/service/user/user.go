@@ -8,11 +8,11 @@ import (
 )
 
 func (s *Service) GetByID(ctx context.Context, userID uuid.UUID) (*models.User, error) {
-	return s.repo.User().GetByID(ctx, userID)
+	return s.repo.User().GetUserByID(ctx, userID)
 }
 
 func (s *Service) GetByEmail(ctx context.Context, email string) (*models.User, error) {
-	return s.repo.User().GetByEmail(ctx, email)
+	return s.repo.User().GetUserByEmail(ctx, email)
 }
 
 func (s *Service) ListTeachers(ctx context.Context) ([]models.Teacher, error) {
@@ -28,5 +28,5 @@ func (s *Service) ListStudentsByGroupID(ctx context.Context, groupID uuid.UUID) 
 }
 
 func (s *Service) Update(ctx context.Context, user *models.User) error {
-	return s.repo.User().Update(ctx, user)
+	return s.repo.User().UpdateUser(ctx, user)
 }

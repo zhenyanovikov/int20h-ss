@@ -13,12 +13,13 @@ type HTTPServer struct {
 	router         *mux.Router
 	googleOAuthCfg *oauth2.Config
 
-	authSrv    service.Auth
-	userSrv    service.User
-	groupSrv   service.Group
-	facultySrv service.Faculty
-	mediaSrv   service.Media
+	authSrv     service.Auth
+	userSrv     service.User
+	groupSrv    service.Group
+	facultySrv  service.Faculty
+	mediaSrv    service.Media
 	notifierSrv service.Notifier
+	activitySrv service.Activity
 }
 
 func New(cfg config.Config, authSrv service.Auth,
@@ -26,12 +27,12 @@ func New(cfg config.Config, authSrv service.Auth,
 	facultySrv service.Faculty, groupSrv service.Group,
 	notifierSrv service.Notifier) *HTTPServer {
 	server := &HTTPServer{
-		cfg:        cfg,
-		authSrv:    authSrv,
-		userSrv:    userSrv,
-		mediaSrv:   mediaSrv,
-		facultySrv: facultySrv,
-		groupSrv:   groupSrv,
+		cfg:         cfg,
+		authSrv:     authSrv,
+		userSrv:     userSrv,
+		mediaSrv:    mediaSrv,
+		facultySrv:  facultySrv,
+		groupSrv:    groupSrv,
 		notifierSrv: notifierSrv,
 		googleOAuthCfg: &oauth2.Config{
 			RedirectURL:  cfg.Oauth.Google.RedirectURL,

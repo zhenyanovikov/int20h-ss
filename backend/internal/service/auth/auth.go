@@ -52,7 +52,7 @@ func (s *Service) Login(ctx context.Context, accessToken string) (*models.User, 
 		return nil, fmt.Errorf("invalid token")
 	}
 
-	user, err := s.repo.User().GetByID(ctx, uuid.MustParse(userID))
+	user, err := s.repo.User().GetUserByID(ctx, uuid.MustParse(userID))
 	if err != nil {
 		return nil, fmt.Errorf("get user by id: %w", err)
 	}

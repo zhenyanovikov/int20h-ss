@@ -9,6 +9,7 @@ package bootstrap
 import (
 	"oss-backend/internal/config"
 	"oss-backend/internal/persistence/postgres"
+	"oss-backend/internal/service/activities"
 	"oss-backend/internal/service/auth"
 	"oss-backend/internal/service/aws/media"
 	"oss-backend/internal/service/faculty"
@@ -40,7 +41,8 @@ func Up() (*Dependencies, error) {
 		return nil, err
 	}
 	httpServer := httpserver.New(configConfig, service, userService, mediaService, facultyService, groupService, notifierService)
-	dependencies := NewDependencies(configConfig, httpServer, service, userService, postgresPostgres, notifierService)
+	activitiesService := activities.New(postgresPostgres)
+	dependencies := NewDependencies(configConfig, httpServer, service, userService, postgresPostgres, notifierService, activitiesService)
 	return dependencies, nil
 }
 
