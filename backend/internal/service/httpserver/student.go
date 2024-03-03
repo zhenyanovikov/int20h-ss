@@ -11,7 +11,23 @@ import (
 )
 
 func (s *HTTPServer) getStudents(w http.ResponseWriter, r *http.Request) {
-	students, err := s.userSrv.ListStudents(r.Context())
+	var request models.FilterUserDTO
+	name := r.URL.Query().Get("name")
+	if name != "" {
+		request.Name = &name
+	}
+
+	groupID := r.URL.Query().Get("groupID")
+	if groupID != "" {
+		parsedID, err := uuid.Parse(groupID)
+		if err != nil {
+			s.respondError(w, http.StatusBadRequest, err)
+			return
+		}
+		request.GroupID = &parsedID
+	}
+
+	students, err := s.userSrv.ListStudents(r.Context(), request)
 	if err != nil {
 		s.respondError(w, http.StatusInternalServerError, err)
 		return

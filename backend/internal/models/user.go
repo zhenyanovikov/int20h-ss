@@ -18,3 +18,8 @@ type User struct {
 	AvatarURL string    `json:"avatarUrl"`
 	Role      Role      `json:"role" bun:",nullzero"`
 }
+
+type FilterUserDTO struct {
+	Name    *string    `json:"name"`
+	GroupID *uuid.UUID `json:"groupID"`
+}

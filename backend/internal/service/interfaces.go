@@ -17,7 +17,7 @@ type User interface {
 	GetByID(ctx context.Context, userID uuid.UUID) (*models.User, error)
 	GetByEmail(ctx context.Context, email string) (*models.User, error)
 	ListTeachers(ctx context.Context) ([]models.Teacher, error)
-	ListStudents(ctx context.Context) ([]models.Student, error)
+	ListStudents(ctx context.Context, filter models.FilterUserDTO) ([]models.Student, error)
 	ListStudentsByGroupID(ctx context.Context, groupID uuid.UUID) ([]models.Student, error)
 	InviteTeacher(ctx context.Context, dto *models.InviteTeacherDTO) error
 	InviteStudent(ctx context.Context, dto *models.InviteStudentDTO) error
